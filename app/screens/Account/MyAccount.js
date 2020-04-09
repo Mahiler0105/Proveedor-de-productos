@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 
 import Loading from "../../components/Loading";
+import Login from "./Login";
 
 import * as firebase from "firebase";
 
@@ -23,8 +24,6 @@ export default MyAccount = (props) => {
       <Text>Usuario Logueado</Text>
     </View>
   ) : (
-    <View>
-      <Text>Logeate perro</Text>
-    </View>
+    <Login />
   );
 };
