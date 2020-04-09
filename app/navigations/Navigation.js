@@ -1,6 +1,8 @@
 import React from "react";
 import { Icon } from "react-native-elements";
 
+import Colors from "../../constants/Colors";
+
 import { createAppContainer } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
@@ -27,9 +29,9 @@ const NavigationStacks = createMaterialBottomTabNavigator(
   {
     //initialRouteName: "Liquors",
     order: ["Account"],
-    activeColor: "#f0615a",
-    inactiveColor: "#190976",
-    barStyle: { backgroundColor: "#FAFAFA" },
+    activeColor: Colors.activeTabColor,
+    inactiveColor: Colors.inactiveTabColor,
+    barStyle: { backgroundColor: Colors.backgroundTabColor },
   }
 );
 
