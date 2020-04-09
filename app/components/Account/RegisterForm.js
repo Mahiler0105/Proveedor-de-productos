@@ -316,6 +316,7 @@ const styles = StyleSheet.create({
   btnContainerRegister: {
     marginTop: 15,
     width: "95%",
+    marginBottom: 20,
   },
   btnRegister: {
     backgroundColor: Colors.secundaryColor,

@@ -9,6 +9,7 @@ import * as firebase from "firebase";
 export default MyAccount = (props) => {
   const [login, setLogin] = useState(null);
   const { navigation } = props;
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       !user ? setLogin(false) : setLogin(true);
