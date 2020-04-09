@@ -9,6 +9,10 @@ export default {
   inactiveTabColor: "#190976",
   backgroundTabColor: "#FAFAFA",
 
+  // COLORES APP
+
+  primaryColor: "#f0615a",
+  secundaryColor: "#190976",
   // tabIconDefault: "#ccc",
   // tabIconSelected: tintColor,
   // tabBar: "#fefefe",
