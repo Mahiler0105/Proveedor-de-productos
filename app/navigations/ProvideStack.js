@@ -17,6 +17,7 @@ const ProvideScreenStack = createStackNavigator({
       headerStyle: {
         backgroundColor: Colors.secundaryColor,
       },
+      
       // headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,
