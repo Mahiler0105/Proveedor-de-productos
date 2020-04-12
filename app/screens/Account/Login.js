@@ -23,7 +23,7 @@ const Login = (props) => {
     <ScrollView style={styles.contenedor}>
       <KeyboardAwareScrollView enableOnAndroid={true}>
         <Image
-          source={require("../../../assets/login.png")}
+          source={require("../../../assets/logo2.png")}
           resizeMode="contain"
           style={styles.logo}
         />
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     height: 250,
-    marginTop: 30,
+    marginTop: 40,
   },
   viewContainer: {
     marginRight: 25,

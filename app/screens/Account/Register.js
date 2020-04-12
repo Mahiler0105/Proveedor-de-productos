@@ -22,7 +22,7 @@ export default function Register(props) {
     <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
       <KeyboardAwareScrollView enableOnAndroid={true}>
         <Image
-          source={require("../../../assets/login.png")}
+          source={require("../../../assets/logo2.png")}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -47,8 +47,8 @@ export default function Register(props) {
 const styles = StyleSheet.create({
   logo: {
     width: "100%",
-    height: 250,
-    marginTop: 30,
+    height: 220,
+    marginTop: 40,
   },
   viewForm: {
     marginRight: 25,
