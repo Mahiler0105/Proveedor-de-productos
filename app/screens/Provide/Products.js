@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
@@ -66,16 +73,27 @@ function Producto(props) {
       style={{
         flex: 1,
         flexDirection: "row",
-        marginTop: 10,
+        marginTop: 15,
         backgroundColor: "#f0615a",
         padding: 15,
         borderRadius: 20,
+        // shadowColor: "#ff",
+        // shadowRadius: 5,
+        // shadowOpacity: 1,
       }}
     >
-      <Image
-        source={{ uri: images }}
-        style={{ width: 160, height: 160, borderRadius: 20 }}
-      />
+      {images ? (
+        <Image
+          source={{ uri: images }}
+          style={{ width: 160, height: 160, borderRadius: 20 }}
+        />
+      ) : (
+        <ActivityIndicator
+          color="#190976"
+          size="large"
+          style={{ width: 160, height: 160 }}
+        />
+      )}
       <View style={{ marginLeft: 15 }}>
         <Text style={{ fontSize: 27, color: "#190976", fontWeight: "bold" }}>
           {Descripcion}

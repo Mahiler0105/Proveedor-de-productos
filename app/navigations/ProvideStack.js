@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-native-elements";
+import { Image, Icon } from "react-native-elements";
 
 import { createStackNavigator } from "react-navigation-stack";
 import Colors from "../../constants/Colors";
@@ -29,6 +29,16 @@ const ProvideScreenStack = createStackNavigator({
     navigationOptions: (props) => ({
       title: props.navigation.state.params.proveedor.nombre,
       headerTintColor: "#fff",
+      headerRight: () => (
+        <Icon
+          type="material-community"
+          name="dots-vertical"
+          size={25}
+          color="#fff"
+          style={{ marginRight: 1 }}
+        />
+      ),
+      headerRightContainerStyle: { marginRight: 10 },
       headerStyle: {
         backgroundColor: Colors.secundaryColor,
       },
