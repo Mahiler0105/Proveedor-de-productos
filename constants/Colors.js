@@ -6,8 +6,8 @@ export default {
   // COLORES DEL TABBAR
 
   activeTabColor: "#f0615a",
-  inactiveTabColor: "#190976",
-  backgroundTabColor: "#FAFAFA",
+  inactiveTabColor: "#fff",
+  backgroundTabColor: "#190976",
 
   // COLORES APP
 
