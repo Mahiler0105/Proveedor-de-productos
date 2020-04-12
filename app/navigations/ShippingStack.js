@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "react-native-elements";
-
+import Colors from "../../constants/Colors";
 import { createStackNavigator } from "react-navigation-stack";
 
 import ShippingScreen from "../screens/Shipping/Shipping";
@@ -12,6 +12,10 @@ const ShippingScreenStack = createStackNavigator({
     screen: ShippingScreen,
     navigationOptions: () => ({
       title: "Envios",
+      headerTintColor: "#fff",
+      headerStyle: {
+        backgroundColor: Colors.secundaryColor,
+      },
       // headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,
