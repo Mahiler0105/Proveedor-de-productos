@@ -49,7 +49,7 @@ const NavigationStacks = createMaterialBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon
             type="material-community"
-            name="cart"
+            name="basket"
             size={size}
             color={tintColor}
           />

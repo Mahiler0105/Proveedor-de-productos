@@ -12,9 +12,11 @@ import { Image, Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import Navigation from "../../navigations/Navigation";
 const db = firebase.firestore(firebaseApp);
 
-export default function Providers() {
+export default function Providers(props) {
+  const { navigation } = props;
   const [proveedor, setProveedor] = useState([]);
   useEffect(() => {
     (async () => {
@@ -34,18 +36,20 @@ export default function Providers() {
     })();
   }, []);
 
-  return <ListProvider proveedor={proveedor} />;
+  return <ListProvider proveedor={proveedor} navigation={navigation} />;
 }
 
 function ListProvider(props) {
-  const { proveedor } = props;
+  const { proveedor, navigation } = props;
   const numero = 2;
   return (
     <View>
       <FlatList
         renderToHardwareTextureAndroid={true}
         data={proveedor}
-        renderItem={(provider) => <Provide provider={provider} />}
+        renderItem={(provider) => (
+          <Provide provider={provider} navigation={navigation} />
+        )}
         keyExtractor={(item, index) => index.toString()}
         numColumns={numero}
         style={{ marginLeft: 15, marginRight: 15 }}
@@ -55,9 +59,10 @@ function ListProvider(props) {
 }
 
 function Provide(props) {
-  const { provider } = props;
+  const { provider, navigation } = props;
   const { id, logo, nombre } = provider.item.proveedor;
   const [image, setImage] = useState(null);
+  console.log(navigation);
 
   useEffect(() => {
     firebase
@@ -82,7 +87,9 @@ function Provide(props) {
     <TouchableOpacity
       style={{ margin: 20 }}
       onPress={() => {
-        console.log("PRESIONAME");
+        console.log("NUEVA MENTE");
+
+        navigation.navigate("Products", { proveedor: provider.item.proveedor });
       }}
     >
       <Avatar

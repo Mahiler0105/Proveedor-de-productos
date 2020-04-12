@@ -5,6 +5,8 @@ import { createStackNavigator } from "react-navigation-stack";
 import Colors from "../../constants/Colors";
 
 import ProviderScreen from "../screens/Provide/Providers";
+import ProductSreen from "../screens/Provide/Products";
+
 // const width = 155;
 // const height = 35;
 
@@ -17,8 +19,20 @@ const ProvideScreenStack = createStackNavigator({
       headerStyle: {
         backgroundColor: Colors.secundaryColor,
       },
-      
-      // headerTitleAlign: "center",
+      headerTitleAlign: "center",
+      //headerTransparent: false,
+      //   headerShown: false,
+    }),
+  },
+  Products: {
+    screen: ProductSreen,
+    navigationOptions: (props) => ({
+      title: props.navigation.state.params.proveedor.nombre,
+      headerTintColor: "#fff",
+      headerStyle: {
+        backgroundColor: Colors.secundaryColor,
+      },
+      headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,
     }),
