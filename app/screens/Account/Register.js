@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     height: 220,
-    marginTop: 40,
+    marginTop: 20,
   },
   viewForm: {
     marginRight: 25,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   back: {
     position: "absolute",
-    top: 40,
+    top: 20,
     left: 20,
     width: 32,
     height: 32,

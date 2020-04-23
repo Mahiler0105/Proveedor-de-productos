@@ -6,7 +6,7 @@ import Colors from "../../constants/Colors";
 
 import ProviderScreen from "../screens/Provide/Providers";
 import ProductSreen from "../screens/Provide/Products";
-
+import InfoProviderScreen from "../screens/Provide/InfoProvide";
 // const width = 155;
 // const height = 35;
 
@@ -35,9 +35,27 @@ const ProvideScreenStack = createStackNavigator({
           name="dots-vertical"
           size={25}
           color="#fff"
+          onPress={() => {
+            props.navigation.navigate("InfoProviders", {
+              proveedor: props.navigation.state.params.proveedor,
+            });
+          }}
         />
       ),
       headerRightContainerStyle: { marginRight: 10 },
+      headerStyle: {
+        backgroundColor: Colors.secundaryColor,
+      },
+      headerTitleAlign: "center",
+      //headerTransparent: false,
+      //   headerShown: false,
+    }),
+  },
+  InfoProviders: {
+    screen: InfoProviderScreen,
+    navigationOptions: () => ({
+      title: "Informacion proveedor",
+      headerTintColor: "#fff",
       headerStyle: {
         backgroundColor: Colors.secundaryColor,
       },

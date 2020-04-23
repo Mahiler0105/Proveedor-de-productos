@@ -31,10 +31,6 @@ const Login = (props) => {
           <LoginForm navigation={navigation} />
           <CreateAccount navigation={navigation} />
         </View>
-        <Divider style={styles.divider} />
-        <View style={styles.viewContainer}>
-          <LoginFacebook />
-        </View>
       </KeyboardAwareScrollView>
     </ScrollView>
   );
@@ -63,20 +59,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: "100%",
-    height: 250,
+    height: 220,
     marginTop: 40,
   },
   viewContainer: {
     marginRight: 25,
     marginLeft: 25,
-  },
-  divider: {
-    backgroundColor: Colors.primaryColor,
-    marginLeft: 30,
-    marginRight: 30,
-    marginTop: 15,
-    marginBottom: 10,
-    height: 1,
   },
   btnRegister: {
     color: Colors.primaryColor,
