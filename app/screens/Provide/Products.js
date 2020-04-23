@@ -73,10 +73,12 @@ function Producto(props) {
       style={{
         flex: 1,
         flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "space-around",
         marginTop: 15,
         backgroundColor: "#f0615a",
-        padding: 15,
-        borderRadius: 20,
+        padding: 6,
+        borderRadius: 10,
         // shadowColor: "#ff",
         // shadowRadius: 5,
         // shadowOpacity: 1,
@@ -85,43 +87,64 @@ function Producto(props) {
       {images ? (
         <Image
           source={{ uri: images }}
-          style={{ width: 160, height: 160, borderRadius: 20 }}
+          style={{ width: 105, height: 105, borderRadius: 10 }}
         />
       ) : (
         <ActivityIndicator
           color="#190976"
           size="large"
-          style={{ width: 160, height: 160 }}
+          style={{ width: 105, height: 105 }}
         />
       )}
-      <View style={{ marginLeft: 15 }}>
-        <Text style={{ fontSize: 27, color: "#190976", fontWeight: "bold" }}>
+      <View style={{ marginLeft: 15, flex: 1, justifyContent: "center" }}>
+        <Text style={{ fontSize: 20, color: "#190976", fontWeight: "bold" }}>
           {Descripcion}
         </Text>
-        <Text style={{ fontSize: 18, color: "#fff", fontWeight: "bold" }}>
+        <Text
+          style={{
+            fontSize: 14,
+            color: "#fff",
+            marginBottom: 15,
+          }}
+        >
           {Nombre}
         </Text>
-        <Text style={{ fontSize: 18, color: "#fff", fontWeight: "bold" }}>
-          S/.{Precio}
-        </Text>
+        <View
+          style={{
+            marginTop: 7,
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 14,
+              color: "#fff",
+              fontWeight: "bold",
+            }}
+          >
+            S/. {Precio}0
+          </Text>
 
-        <Button
-          iconContainerStyle={{ backgroundColor: "#ff3" }}
-          icon={
-            <Icon
-              type="material-community"
-              name="basket"
-              size={25}
-              color="white"
-            />
-          }
-          iconRight
-          //TouchableComponent={<TouchableOpacity></TouchableOpacity>}
-          titleStyle={{ fontSize: 14, marginRight: 8 }}
-          title="Agregar carrito"
-          buttonStyle={{ backgroundColor: "#190976", borderRadius: 10 }}
-          containerStyle={{ marginTop: 10, width: 160 }}
-        />
+          <Button
+            iconContainerStyle={{ backgroundColor: "#ff3" }}
+            iconRight
+            icon={
+              <Icon
+                type="material-community"
+                name="basket"
+                size={16}
+                color="#fff"
+              />
+            }
+            titleStyle={{ fontSize: 10, marginRight: 5, fontWeight: "bold" }}
+            title="AGREGAR A"
+            buttonStyle={{ backgroundColor: "#190976", borderRadius: 5 }}
+            containerStyle={{ width: "51%" }}
+          />
+        </View>
       </View>
     </TouchableOpacity>
   );
