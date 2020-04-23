@@ -43,7 +43,14 @@ function ListProvider(props) {
   const { proveedor, navigation } = props;
   const numero = 2;
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 10,
+      }}
+    >
       <FlatList
         renderToHardwareTextureAndroid={true}
         data={proveedor}
@@ -52,7 +59,11 @@ function ListProvider(props) {
         )}
         keyExtractor={(item, index) => index.toString()}
         numColumns={numero}
-        style={{ marginLeft: 15, marginRight: 15 }}
+        style={{
+          width: "100%",
+          margin: 0,
+          flex: 1,
+        }}
       />
     </View>
   );
@@ -85,7 +96,11 @@ function Provide(props) {
 
   return (
     <TouchableOpacity
-      style={{ margin: 20 }}
+      style={{
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 17,
+      }}
       onPress={() => {
         console.log("NUEVA MENTE");
 

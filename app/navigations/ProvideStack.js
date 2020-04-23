@@ -35,7 +35,6 @@ const ProvideScreenStack = createStackNavigator({
           name="dots-vertical"
           size={25}
           color="#fff"
-          style={{ marginRight: 1 }}
         />
       ),
       headerRightContainerStyle: { marginRight: 10 },
