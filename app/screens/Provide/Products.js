@@ -7,6 +7,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
+import Layout from "../../../constants/Layout";
 import { Button, Icon } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
@@ -79,6 +80,7 @@ function Producto(props) {
         backgroundColor: "#f0615a",
         padding: 6,
         borderRadius: 10,
+        height: Layout.window.height / 4.5,
         // shadowColor: "#ff",
         // shadowRadius: 5,
         // shadowOpacity: 1,
@@ -87,13 +89,20 @@ function Producto(props) {
       {images ? (
         <Image
           source={{ uri: images }}
-          style={{ width: 105, height: 105, borderRadius: 10 }}
+          style={{
+            width: Layout.window.width / 3,
+            height: Layout.window.height / 5,
+            borderRadius: 12,
+          }}
         />
       ) : (
         <ActivityIndicator
           color="#190976"
           size="large"
-          style={{ width: 105, height: 105 }}
+          style={{
+            width: Layout.window.width / 3,
+            height: Layout.window.height / 5,
+          }}
         />
       )}
       <View style={{ marginLeft: 15, flex: 1, justifyContent: "center" }}>
@@ -109,40 +118,65 @@ function Producto(props) {
         >
           {Nombre}
         </Text>
+        <Text
+          style={{
+            fontSize: 14,
+            color: "#fff",
+            fontWeight: "bold",
+          }}
+        >
+          S/. {Precio}0 x docena
+        </Text>
         <View
           style={{
             marginTop: 7,
+            // backgroundColor: "#ffa",
             flex: 1,
             flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "baseline",
+            // justifyContent: "flex-end",
+            // alignItems: "flex-end",
           }}
         >
-          <Text
-            style={{
-              fontSize: 14,
+          <Button
+            titleStyle={{
+              fontSize: 10,
               color: "#fff",
               fontWeight: "bold",
             }}
-          >
-            S/. {Precio}0
-          </Text>
-
+            title="AGREGAR A CARRITO"
+            buttonStyle={{
+              width: "87%",
+              height: "90%",
+              borderRadius: 5,
+              backgroundColor: "#190976",
+            }}
+          />
           <Button
-            iconContainerStyle={{ backgroundColor: "#ff3" }}
             iconRight
             icon={
               <Icon
                 type="material-community"
-                name="basket"
+                name="share-variant"
                 size={16}
                 color="#fff"
               />
             }
-            titleStyle={{ fontSize: 10, marginRight: 5, fontWeight: "bold" }}
-            title="AGREGAR A"
-            buttonStyle={{ backgroundColor: "#190976", borderRadius: 5 }}
-            containerStyle={{ width: "51%" }}
+            titleStyle={{
+              fontSize: 10,
+              color: "#190976",
+              fontWeight: "bold",
+            }}
+            title=""
+            buttonStyle={{
+              width: "60%",
+              borderRadius: 5,
+
+              height: "90%",
+              // borderColor: ,
+              backgroundColor: "#190976",
+              margin: 0,
+            }}
+            containerStyle={{ marginLeft: -7 }}
           />
         </View>
       </View>
