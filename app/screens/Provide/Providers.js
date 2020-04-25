@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Image, Avatar } from "react-native-elements";
-
+import Layout from "../../../constants/Layout";
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -61,8 +61,6 @@ function ListProvider(props) {
         numColumns={numero}
         style={{
           width: "100%",
-          margin: 0,
-          flex: 1,
         }}
       />
     </View>
@@ -97,8 +95,8 @@ function Provide(props) {
   return (
     <TouchableOpacity
       style={{
-        marginLeft: 10,
-        marginRight: 10,
+        marginLeft: 20,
+        marginRight: 20,
         marginTop: 17,
       }}
       onPress={() => {
@@ -111,9 +109,11 @@ function Provide(props) {
         source={{ uri: image }}
         rounded
         size="xlarge"
-        // style={{ width: 160, height: 160 }}
-
-        // PlaceholderContent={<ActivityIndicator />}
+        style={{
+          padding: 2,
+          width: Layout.window.width / 2 - 50,
+          height: Layout.window.width / 2 - 50,
+        }}
       />
       <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
     </TouchableOpacity>
