@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 
 import Loading from "../../components/Loading";
 import Login from "./Login";
+import UserLogged from "./UserLogged";
 
 import * as firebase from "firebase";
 
@@ -20,11 +21,5 @@ export default MyAccount = (props) => {
     return <Loading isVisible={true} text="Cargando" />;
   }
 
-  return login ? (
-    <View>
-      <Text>Usuario Logueado</Text>
-    </View>
-  ) : (
-    <Login />
-  );
+  return login ? <UserLogged /> : <Login />;
 };

@@ -78,7 +78,7 @@ function Producto(props) {
         alignContent: "space-around",
         marginTop: 15,
         backgroundColor: "#f0615a",
-        padding: 6,
+        padding: 7,
         borderRadius: 10,
         height: Layout.window.height / 4.5,
         // shadowColor: "#ff",
@@ -129,12 +129,13 @@ function Producto(props) {
         </Text>
         <View
           style={{
-            marginTop: 7,
-            // backgroundColor: "#ffa",
+            marginTop: 15,
+            // marginBottom: 5,
             flex: 1,
+            // backgroundColor: "#ffaa",
             flexDirection: "row",
-            // justifyContent: "flex-end",
-            // alignItems: "flex-end",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Button
@@ -145,8 +146,8 @@ function Producto(props) {
             }}
             title="AGREGAR A CARRITO"
             buttonStyle={{
-              width: "87%",
-              height: "90%",
+              width: 165,
+              marginRight: 5,
               borderRadius: 5,
               backgroundColor: "#190976",
             }}
@@ -168,15 +169,11 @@ function Producto(props) {
             }}
             title=""
             buttonStyle={{
-              width: "60%",
+              width: 40,
               borderRadius: 5,
-
-              height: "90%",
-              // borderColor: ,
               backgroundColor: "#190976",
               margin: 0,
             }}
-            containerStyle={{ marginLeft: -7 }}
           />
         </View>
       </View>

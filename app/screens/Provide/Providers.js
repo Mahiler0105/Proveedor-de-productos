@@ -8,16 +8,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Image, Avatar } from "react-native-elements";
-import Layout from "../../../constants/Layout";
 import { firebaseApp } from "../../utils/Firebase";
+import Layout from "../../../constants/Layout";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Navigation from "../../navigations/Navigation";
+
 const db = firebase.firestore(firebaseApp);
 
 export default function Providers(props) {
   const { navigation } = props;
   const [proveedor, setProveedor] = useState([]);
+
   useEffect(() => {
     (async () => {
       const resultProvider = [];
@@ -35,7 +36,6 @@ export default function Providers(props) {
         .catch((error) => console.log("Error" + error));
     })();
   }, []);
-
   return <ListProvider proveedor={proveedor} navigation={navigation} />;
 }
 

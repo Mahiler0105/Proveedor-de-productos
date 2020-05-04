@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     height: 220,
-    marginTop: 40,
+    marginTop: 60,
   },
   viewContainer: {
     marginRight: 25,

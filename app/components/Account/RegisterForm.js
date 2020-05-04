@@ -65,21 +65,22 @@ export default function RegisterForm(props) {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
-          await db
-            .collection("users")
-            .doc(firebase.auth().currentUser.uid)
-            .set({
-              name: name,
-              lastName: lastName,
-              birthdate: firebase.firestore.Timestamp.fromDate(
-                new Date("December 10, 1815")
-              ),
-              favoritePlaces: [],
-              gender: "",
-              createAt: new Date(),
-            })
-            .then(() => navigation.navigate("MyAccount"))
-            .catch(() => console.log("ERROR"));
+          navigation.navigate("MyAccount");
+          // await db
+          //   .collection("users")
+          //   .doc(firebase.auth().currentUser.uid)
+          //   .set({
+          //     name: name,
+          //     lastName: lastName,
+          //     birthdate: firebase.firestore.Timestamp.fromDate(
+          //       new Date("December 10, 1815")
+          //     ),
+          //     favoritePlaces: [],
+          //     gender: "",
+          //     createAt: new Date(),
+          //   })
+          //   .then(() => navigation.navigate("MyAccount"))
+          //   .catch(() => console.log("ERROR"));
         })
         .catch((error) => {
           switch (error.code) {
