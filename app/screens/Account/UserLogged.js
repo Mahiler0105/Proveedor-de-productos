@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
+import { ListItem } from 'react-native-elements'
 
 // import AccountOptions from "../../components/Account/AccountOptions";
 
@@ -11,6 +12,8 @@ import "firebase/firestore";
 const db = firebase.firestore(firebaseApp);
 
 export default function UserLogged(props) {
+
+  
   // const [userInfo, setUserInfo] = useState({});
   const [userInfo2, setUserInfo2] = useState({});
   const { navigation } = props;
@@ -33,24 +36,28 @@ export default function UserLogged(props) {
     })();
   }, []);
 
+  
+  
+  
+
   return (
     <View style={{ backgroundColor: "#fff", flex: 1 }}>
       <View style={styles.header2}>
         <Avatar
           size="large"
           rounded
-          icon={{ name: "user", type: "font-awesome" }}
+          icon={{ name: "user", type: "font-awesome", showAccessory: true}}
           onPress={() => console.log("Works!")}
           activeOpacity={0.7}
         />
         <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
-          NUEVO USUARIO
+          {firebase.auth().currentUser.uid}
         </Text>
         <Text style={{ textAlign: "center", fontSize: 15, marginTop: 10 }}>
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <View style={styles.container}>
+      <View >
         {/* <AccountOptions navigation={navigation} /> */}
         <Button
           title="Cerrar Sesión"
@@ -59,14 +66,58 @@ export default function UserLogged(props) {
           containerStyle={styles.containerBtnSO}
         />
       </View>
+
+      <View>
+        {
+          list.map((item, i) => (
+            <TouchableOpacity
+              style={{
+                
+              }}
+              onPress={() => {
+                console.log("Works!");
+              }}
+            >
+              <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={
+                { name: item.icon, 
+                  type:item.type,                   
+                }
+              }
+              bottomDivider
+              chevron
+            />
+            </TouchableOpacity>
+            
+            
+          ))
+        }
+      </View>
     </View>
   );
 }
+const list = [
+  {
+    title: 'Cuenta',
+    icon: 'account-edit',
+    type: 'material-community'
+  },
+  {
+    title: 'Preferencias',
+    icon: 'ios-settings',
+    type: 'ionicon'
+  },
+  {
+    title: 'Acerca de',
+    icon: 'information',
+    type: 'material-community'
+  },
+];
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-  },
+ 
   btnSignOut: {
     backgroundColor: "#190976",
   },

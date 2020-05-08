@@ -88,6 +88,7 @@ function Provide(props) {
       });
   }, []);
   console.log(id + "  " + nombre + "  " + logo);
+
   return (
     <TouchableOpacity
       style={{
