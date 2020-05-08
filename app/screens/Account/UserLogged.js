@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
-import { ListItem } from 'react-native-elements'
+import { ListItem } from "react-native-elements";
 
 // import AccountOptions from "../../components/Account/AccountOptions";
 
@@ -18,7 +18,6 @@ const UserLogged = (props) => {
   console.log(navigation);
 
   const [userInfo2, setUserInfo2] = useState({});
-
 
   useEffect(() => {
     (async () => {
@@ -45,7 +44,8 @@ const HeaderUp = (props) => {
         <Avatar
           size="large"
           rounded
-          icon={{ name: "user", type: "font-awesome", showAccessory: true}}
+          showAccessory
+          icon={{ name: "user", type: "font-awesome" }}
           onPress={() => console.log("Works!")}
           activeOpacity={0.7}
         />
@@ -56,7 +56,7 @@ const HeaderUp = (props) => {
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <View >
+      <View>
         {/* <AccountOptions navigation={navigation} /> */}
         <Button
           title="Cerrar Sesión"
@@ -64,64 +64,58 @@ const HeaderUp = (props) => {
           buttonStyle={styles.btnSignOut}
           containerStyle={styles.containerBtnSO}
         />
-      </View>     
+      </View>
     </View>
   );
 };
 
 const Options = (props) => {
   const { navigation } = props;
-  
   return (
-    <View>{list.map((item, i) => (<TouchableOpacity onPress={() => navigation.navigate(item.navigate)}>
+    <View>
+      {list.map((item, i) => (
+        <TouchableOpacity onPress={() => navigation.navigate(item.navigate)}>
           <ListItem
-          key={i}
-          title={item.title}
-          leftIcon={
-            { name: item.icon, 
-              type:item.type,                   
-            }
-          }
-          bottomDivider
-          chevron
-        />
+            key={i}
+            title={item.title}
+            leftIcon={{ name: item.icon, type: item.type }}
+            bottomDivider
+            chevron
+          />
         </TouchableOpacity>
       ))}
-  </View>
+    </View>
   );
 };
 
-
-
 const list = [
   {
-    title: 'Cuenta',
-    icon: 'account-edit',
-    type: 'material-community',
-    navigate: 'Settings'
+    title: "Cuenta",
+    icon: "account-edit",
+    type: "material-community",
+    navigate: "Settings",
   },
   {
-    title: 'Mis Tiendas',
-    icon: 'store',
-    type: 'font-awesome-5',
-    navigate: 'Stores'
+    title: "Mis Tiendas",
+    icon: "store",
+    type: "font-awesome-5",
+    navigate: "Stores",
   },
   {
-    title: 'Preferencias',
-    icon: 'ios-settings',
-    type: 'ionicon',
-    navigate: 'AppPreferences'
+    title: "Preferencias",
+    icon: "ios-settings",
+    type: "ionicon",
+    navigate: "AppPreferences",
   },
   {
-    title: 'Acerca de',
-    icon: 'information',
-    type: 'material-community',
-    navigate: 'About'
+    title: "Acerca de",
+    icon: "information",
+    type: "material-community",
+    navigate: "About",
   },
 ];
 
 const styles = StyleSheet.create({
- 
   btnSignOut: {
     backgroundColor: "#190976",
   },
