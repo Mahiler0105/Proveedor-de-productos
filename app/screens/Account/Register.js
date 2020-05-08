@@ -13,11 +13,11 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import RegisterForm from "../../components/Account/RegisterForm";
 import Colors from "../../../constants/Colors";
+import Back from "../../components/Back";
 
 export default function Register(props) {
   const { navigation } = props;
-  console.log("hola pe", props);
-
+  
   return (
     <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
       <KeyboardAwareScrollView enableOnAndroid={true}>
@@ -26,16 +26,7 @@ export default function Register(props) {
           style={styles.logo}
           resizeMode="contain"
         />
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons
-            name="ios-arrow-round-back"
-            size={32}
-            color="#190976"
-          ></Ionicons>
-        </TouchableOpacity>
+        <Back navigation={navigation}></Back>
         <View style={styles.viewForm}>
           <RegisterForm navigation={navigation} />
         </View>

@@ -9,24 +9,16 @@ import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
+import { withNavigation } from "react-navigation";
+
 const db = firebase.firestore(firebaseApp);
 
-export default function UserLogged(props) {
-
-  
-  // const [userInfo, setUserInfo] = useState({});
-  const [userInfo2, setUserInfo2] = useState({});
+const UserLogged = (props) => {
   const { navigation } = props;
+  console.log(navigation);
 
-  //   useEffect(() => {
-  //     db.collection("users")
-  //       .doc(firebase.auth().currentUser.uid)
-  //       .get()
-  //       .then((doc) => {
-  //         // console.log("jjajajaj");
-  //         setUserInfo2(doc.data());
-  //       });
-  //   }, []);
+  const [userInfo2, setUserInfo2] = useState({});
+
 
   useEffect(() => {
     (async () => {
@@ -36,12 +28,19 @@ export default function UserLogged(props) {
     })();
   }, []);
 
-  
-  
-  
-
   return (
     <View style={{ backgroundColor: "#fff", flex: 1 }}>
+      <HeaderUp navigation={navigation}></HeaderUp>
+      <Options navigation={navigation}></Options>
+    </View>
+  );
+};
+export default withNavigation(UserLogged);
+
+const HeaderUp = (props) => {
+  const { navigation } = props;
+  return (
+    <View>
       <View style={styles.header2}>
         <Avatar
           size="large"
@@ -65,54 +64,59 @@ export default function UserLogged(props) {
           buttonStyle={styles.btnSignOut}
           containerStyle={styles.containerBtnSO}
         />
-      </View>
-
-      <View>
-        {
-          list.map((item, i) => (
-            <TouchableOpacity
-              style={{
-                
-              }}
-              onPress={() => {
-                console.log("Works!");
-              }}
-            >
-              <ListItem
-              key={i}
-              title={item.title}
-              leftIcon={
-                { name: item.icon, 
-                  type:item.type,                   
-                }
-              }
-              bottomDivider
-              chevron
-            />
-            </TouchableOpacity>
-            
-            
-          ))
-        }
-      </View>
+      </View>     
     </View>
   );
-}
+};
+
+const Options = (props) => {
+  const { navigation } = props;
+  
+  return (
+    <View>{list.map((item, i) => (<TouchableOpacity onPress={() => navigation.navigate(item.navigate)}>
+          <ListItem
+          key={i}
+          title={item.title}
+          leftIcon={
+            { name: item.icon, 
+              type:item.type,                   
+            }
+          }
+          bottomDivider
+          chevron
+        />
+        </TouchableOpacity>
+      ))}
+  </View>
+  );
+};
+
+
+
 const list = [
   {
     title: 'Cuenta',
     icon: 'account-edit',
-    type: 'material-community'
+    type: 'material-community',
+    navigate: 'Settings'
+  },
+  {
+    title: 'Mis Tiendas',
+    icon: 'store',
+    type: 'font-awesome-5',
+    navigate: 'Stores'
   },
   {
     title: 'Preferencias',
     icon: 'ios-settings',
-    type: 'ionicon'
+    type: 'ionicon',
+    navigate: 'AppPreferences'
   },
   {
     title: 'Acerca de',
     icon: 'information',
-    type: 'material-community'
+    type: 'material-community',
+    navigate: 'About'
   },
 ];
 
