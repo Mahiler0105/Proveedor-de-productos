@@ -11,7 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 // import { Input } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import RegisterForm from "../../components/Account/RegisterForm";
+import RegisterForm_two from "../../components/Account/RegisterForm_two";
 import Colors from "../../../constants/Colors";
 import Back from "../../components/Back";
 
@@ -28,7 +28,7 @@ export default function Register(props) {
         />
         <Back navigation={navigation}></Back>
         <View style={styles.viewForm}>
-          <RegisterForm navigation={navigation} />
+          <RegisterForm_two navigation={navigation} />
         </View>
       </KeyboardAwareScrollView>
     </ScrollView>

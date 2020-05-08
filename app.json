@@ -2,11 +2,7 @@
   "expo": {
     "name": "Lerietbool: Proveedor de productos",
     "slug": "Lerietbool_proveedor_productos",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "androidStatusBar": {
       "hidden": true
     },
@@ -21,11 +17,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "permissions": ["CAMERA_ROLL"]
     }
   }
 }
