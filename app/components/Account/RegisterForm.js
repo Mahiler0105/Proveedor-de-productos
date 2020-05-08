@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, Alert } from "react-native";
+import { TextInput, StyleSheet, View, TouchableOpacity, Alert } from "react-native";
 import { Input, Icon, Button, CheckBox } from "react-native-elements";
 
 import { firebaseApp } from "../../utils/Firebase";
@@ -225,8 +225,7 @@ export default function RegisterForm(props) {
           flexDirection: "row",
         }}
       >
-        <Input
-          defaultValue="+51"
+         <Input
           maxLength={9}
           keyboardType="number-pad"
           placeholder="Celular"
@@ -235,6 +234,7 @@ export default function RegisterForm(props) {
             width: 200,
             paddingLeft: 15,
           }}
+          
           inputContainerStyle={styles.inputContainer}
           selectionColor={Colors.secundaryColor}
           onChange={(e) => setPhone(e.nativeEvent.text)}
@@ -248,6 +248,8 @@ export default function RegisterForm(props) {
             />
           }
         />
+
+        
         <CheckBox
           title="Soy +18"
           checked={major}
@@ -284,6 +286,7 @@ export default function RegisterForm(props) {
 }
 
 const styles = StyleSheet.create({
+  
   formContainer: {
     flex: 1,
     alignItems: "center",
