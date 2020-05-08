@@ -49,7 +49,6 @@ const CreateAccount = (props) => {
     </View>
   );
 };
-
 export default withNavigation(Login);
 
 const styles = StyleSheet.create({
