@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import Back from "../../components/Back";
 
 import { useState, useEffect } from "react";

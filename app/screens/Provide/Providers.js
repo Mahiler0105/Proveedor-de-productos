@@ -36,7 +36,12 @@ export default function Providers(props) {
         .catch((error) => console.log("Error" + error));
     })();
   }, []);
+
+  console.log(proveedor);
+
   return <ListProvider proveedor={proveedor} navigation={navigation} />;
+
+  
 }
 
 function ListProvider(props) {
@@ -69,7 +74,7 @@ function ListProvider(props) {
 
 function Provide(props) {
   const { provider, navigation } = props;
-  const { id, logo, nombre } = provider.item.proveedor;
+  const { id, logo, nombre, cover } = provider.item.proveedor;
   const [image, setImage] = useState(null);
   console.log(navigation);
 
@@ -88,7 +93,7 @@ function Provide(props) {
       });
   }, []);
 
-  console.log(id + "  " + nombre + "  " + logo);
+  console.log(id + "  " + nombre + "  " + logo + " " + cover);
 
   return (
     <TouchableOpacity

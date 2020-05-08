@@ -7,6 +7,7 @@ import Colors from "../../constants/Colors";
 import ProviderScreen from "../screens/Provide/Providers";
 import ProductSreen from "../screens/Provide/Products";
 import InfoProviderScreen from "../screens/Provide/InfoProvide";
+
 // const width = 155;
 // const height = 35;
 
@@ -64,6 +65,5 @@ const ProvideScreenStack = createStackNavigator({
       //   headerShown: false,
     }),
   },
-});
-
+})
 export default ProvideScreenStack;

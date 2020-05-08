@@ -11,6 +11,8 @@
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
     "expo": "^37.0.8",
+    "expo-image-picker": "~8.1.0",
+    "expo-permissions": "~8.1.0",
     "firebase": "7.7.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",

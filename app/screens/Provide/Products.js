@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator} from "react-native";
 import Layout from "../../../constants/Layout";
 import { Button, Icon } from "react-native-elements";
+
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
 const db = firebase.firestore(firebaseApp);
 
 export default function Products(props) {
-  const { nombre, id } = props.navigation.state.params.proveedor;
+  const { cover, id } = props.navigation.state.params.proveedor;
   const [producto, setProducto] = useState([]);
 
   useEffect(() => {
@@ -69,6 +63,9 @@ function Producto(props) {
         console.log(error);
       });
   }, []);
+
+  console.log(Descripcion+ "  " + Nombre+ "  " + Precio+ "  " + imagen);  
+
   return (
     <TouchableOpacity
       style={{
