@@ -31,5 +31,6 @@ const styles = StyleSheet.create({
       backgroundColor: Colors.primaryColor,
       alignItems: "center",
       justifyContent: "center",
+      zIndex: 10000000
     },
   });
