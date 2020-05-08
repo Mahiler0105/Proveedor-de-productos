@@ -76,7 +76,7 @@ function Producto(props) {
         flexDirection: "row",
         justifyContent: "space-between",
         alignContent: "space-around",
-        marginTop: 15,
+        marginTop: 12,
         backgroundColor: "#f0615a",
         padding: 7,
         borderRadius: 10,

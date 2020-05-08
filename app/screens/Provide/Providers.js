@@ -87,11 +87,7 @@ function Provide(props) {
         console.log(error);
       });
   }, []);
-
   console.log(id + "  " + nombre + "  " + logo);
-
-  // console.log("NO MAMES" + proveedor.id);
-
   return (
     <TouchableOpacity
       style={{
@@ -100,8 +96,6 @@ function Provide(props) {
         marginTop: 17,
       }}
       onPress={() => {
-        console.log("NUEVA MENTE");
-
         navigation.navigate("Products", { proveedor: provider.item.proveedor });
       }}
     >
