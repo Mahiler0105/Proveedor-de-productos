@@ -64,8 +64,8 @@ export default ({ album: { artist, tracks }, y }: ContentProps) => {
         {
           tracks.map((track, key) => (
             <Track
-              index={key + 1}
-              {...{ track, key, artist }}
+              
+              {...{ track }}
             />
           ))
         }
@@ -91,10 +91,13 @@ const styles = StyleSheet.create({
   },
   artistContainer: {
     ...StyleSheet.absoluteFillObject,
+    marginBottom: -1.25 * BUTTON_HEIGHT,
     justifyContent: "center",
     alignItems: "center",
+    
   },
   artist: {
+    
     textAlign: "center",
     color: "white",
     fontSize: 48,
@@ -102,9 +105,11 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: -BUTTON_HEIGHT,
+    
   },
   tracks: {
-    paddingTop: 32,
+    paddingTop: 10,
     backgroundColor: "black",
+    paddingBottom: 70,
   },
 });

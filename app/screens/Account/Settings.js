@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const About = (props) =>{
+const Settings = (props) =>{
   const {navigation} = props
   return (
     <View>
@@ -10,11 +10,4 @@ const About = (props) =>{
     </View>
   );
 }
-export default About
-
-
-
-
-
-
-
+export default Settings

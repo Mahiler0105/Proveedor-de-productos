@@ -6,6 +6,8 @@ import { createStackNavigator } from "react-navigation-stack";
 import MyAccountScreen from "../screens/Account/MyAccount";
 import LoginScreen from "../screens/Account/Login";
 import RegisterScreen from "../screens/Account/Register";
+import Register_two_Screen from "../screens/Account/Register_two";
+
 import SettingsScreen from "../screens/Account/Settings";
 import StoresScreen from "../screens/Account/Stores";
 import AppPreferencesScreen from "../screens/Account/AppPreferences";
@@ -37,6 +39,12 @@ const AccountScreenStack = createStackNavigator({
       headerShown: false,
     }),
   },
+  Register_two: {
+    screen: Register_two_Screen,
+    navigationOptions: () => ({
+      headerShown: false,
+    }),
+  },
 
   Settings: {
     screen: SettingsScreen,
@@ -62,9 +70,6 @@ const AccountScreenStack = createStackNavigator({
       headerShown: false,
     }),
   },
-
-
-
 });
 
 export default AccountScreenStack;

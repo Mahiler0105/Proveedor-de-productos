@@ -33,15 +33,34 @@ export default function Products(props) {
 
   return (
     <View>
+      <Cover cover={cover}></Cover>
       <FlatList
         renderToHardwareTextureAndroid={true}
         data={producto}
         renderItem={(product) => <Producto product={product} />}
         keyExtractor={(item, index) => index.toString()}
         style={{ marginLeft: 15, marginRight: 15 }}
-      />
+      />      
     </View>
   );
+}
+const Cover = (props)=>{
+  const {cover} = props
+  const [banner, setBanner] = useState(null);
+  useEffect(() => {
+    firebase
+      .storage()
+      .ref(cover)
+      .getDownloadURL()
+      .then((result) => {        
+        setBanner(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  console.log("Banner:"+banner);
+  return (<></>)
 }
 
 function Producto(props) {
@@ -73,7 +92,7 @@ function Producto(props) {
         flexDirection: "row",
         justifyContent: "space-between",
         alignContent: "space-around",
-        marginTop: 15,
+        marginTop: 12,
         backgroundColor: "#f0615a",
         padding: 7,
         borderRadius: 10,

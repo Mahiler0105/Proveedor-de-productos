@@ -6,6 +6,11 @@ import Animated from "react-native-reanimated";
 import { Album, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
 import { BUTTON_HEIGHT } from "./ShufflePlay";
 
+import { useState, useEffect } from "react";
+import { firebaseApp } from "../../utils/Firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
+
 interface CoverProps {
   album: Album;
   y: Animated.Value<number>;
@@ -14,6 +19,20 @@ interface CoverProps {
 const { interpolate, Extrapolate } = Animated;
 
 export default ({ album: { cover }, y }: CoverProps) => {
+  const [image, setImage] = useState("");
+  useEffect(()=>{
+    firebase
+      .storage()
+      .ref(cover)
+      .getDownloadURL()
+      .then( (result) => {        
+        setImage(result);
+      })
+      .catch((error) => {
+        console.log("EEEEE" + error);
+      });    
+  },[])
+ 
   const scale: any = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, 0],
     outputRange: [4, 1],
@@ -26,7 +45,7 @@ export default ({ album: { cover }, y }: CoverProps) => {
   });
   return (
     <Animated.View style={[styles.container, { transform: [{ scale }] }]}>
-      <Image style={styles.image} source={cover} />
+      <Image style={styles.image}  source={{uri: image,}}  />
       <Animated.View
         style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "black", opacity }}
       />
@@ -37,7 +56,7 @@ export default ({ album: { cover }, y }: CoverProps) => {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    height: MAX_HEADER_HEIGHT + BUTTON_HEIGHT * 2,
+    height: MAX_HEADER_HEIGHT + BUTTON_HEIGHT ,
   },
   image: {
     ...StyleSheet.absoluteFillObject,

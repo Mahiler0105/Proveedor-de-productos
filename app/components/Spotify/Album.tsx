@@ -12,6 +12,8 @@ interface AlbumProps {
 const { Value } = Animated;
 
 export default ({ album }: AlbumProps) => {
+  console.log("AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:")
+  console.log(album);
   const y = new Value(0);
   return (
     <View style={styles.container}>

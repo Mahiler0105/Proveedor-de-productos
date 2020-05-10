@@ -5,8 +5,10 @@ import { createStackNavigator } from "react-navigation-stack";
 import Colors from "../../constants/Colors";
 
 import ProviderScreen from "../screens/Provide/Providers";
-import ProductSreen from "../screens/Provide/Products";
+import ProductScreen from "../screens/Provide/Testing";
 import InfoProviderScreen from "../screens/Provide/InfoProvide";
+
+
 
 // const width = 155;
 // const height = 35;
@@ -26,10 +28,10 @@ const ProvideScreenStack = createStackNavigator({
     }),
   },
   Products: {
-    screen: ProductSreen,
+    screen: ProductScreen,
     navigationOptions: (props) => ({
       title: props.navigation.state.params.proveedor.nombre,
-      headerTintColor: "#fff",
+      /*headerTintColor: "#fff",
       headerRight: () => (
         <Icon
           type="material-community"
@@ -46,10 +48,10 @@ const ProvideScreenStack = createStackNavigator({
       headerRightContainerStyle: { marginRight: 10 },
       headerStyle: {
         backgroundColor: Colors.secundaryColor,
-      },
+      },*/
       headerTitleAlign: "center",
-      //headerTransparent: false,
-      //   headerShown: false,
+      headerTransparent: false,
+      headerShown: false,
     }),
   },
   InfoProviders: {
@@ -65,5 +67,6 @@ const ProvideScreenStack = createStackNavigator({
       //   headerShown: false,
     }),
   },
+ 
 })
 export default ProvideScreenStack;

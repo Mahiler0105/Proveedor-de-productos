@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Constants from "expo-constants";
 import Animated from "react-native-reanimated";
 import { MIN_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
@@ -31,12 +31,13 @@ export default ({ artist, y }: HeaderProps) => {
 };
 
 const styles = StyleSheet.create({
+  
   container: {
     position: "absolute",
-    top: BUTTON_HEIGHT / 2 - MIN_HEADER_HEIGHT,
+    top: BUTTON_HEIGHT/2  - MIN_HEADER_HEIGHT,
     left: 0,
     right: 0,
-    height: MIN_HEADER_HEIGHT,
+    height: MIN_HEADER_HEIGHT,    
     backgroundColor: "black",
     paddingTop: Constants.statusBarHeight,
   },
