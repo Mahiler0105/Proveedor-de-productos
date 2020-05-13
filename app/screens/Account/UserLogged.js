@@ -139,7 +139,7 @@ const HeaderUp = (props) => {
         </Text>
       </View>
       <View>
-        {/* <AccountOptions navigation={navigation} /> */}
+       
         <Button
           title="Cerrar Sesión"
           onPress={() => firebase.auth().signOut()}

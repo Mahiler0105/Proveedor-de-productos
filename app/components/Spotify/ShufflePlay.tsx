@@ -9,7 +9,7 @@ export const BUTTON_WIDTH = "auto";
 export default () => (
   <TouchableWithoutFeedback>
     <View style={styles.button}>
-      <Text style={styles.label}>PRODUCTOS</Text>
+      <Text style={styles.label}>BEBIDAS</Text>
     </View>
   </TouchableWithoutFeedback>
 );

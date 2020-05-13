@@ -76,7 +76,7 @@ const NavigationStacks = createMaterialBottomTabNavigator(
     order: ["Provider", "Shipping", "Cart", "Account"],
     activeColor: Colors.activeTabColor,
     inactiveColor: Colors.inactiveTabColor,
-    barStyle: { backgroundColor: Colors.backgroundTabColor },
+    barStyle: { backgroundColor: 'rgb(0,6,36)' },
   }
 );
 

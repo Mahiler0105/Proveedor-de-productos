@@ -7,6 +7,9 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import {Suppliers, All} from "../../components/Supplier";
 
+import { LinearGradient } from "expo-linear-gradient";
+import { height, width } from "window-size";
+
 const db = firebase.firestore(firebaseApp);
 
 export default function Providers(props) {
@@ -47,14 +50,20 @@ function ListProvider(props) {
   const { proveedor, navigation } = props;
   
   return (
-    <View
+    <LinearGradient 
+    style={StyleSheet.absoluteFill}
+    start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+    locations={[0,0.5,0.6]}  
+    colors={['#51616f', '#272d33']} 
+  >
+    <View    
     style={{
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      padding: 10,
-    }}
-    ><View style={styles.container}>
+      padding: 10,      
+    }}>      
+      <View style={styles.container}>
       {
         suppliers.all.map((track) => (
           <Provide provider={track} navigation={navigation} />
@@ -64,6 +73,7 @@ function ListProvider(props) {
     </View>
         
     </View>
+    </LinearGradient>
   );
 }
 

@@ -11,7 +11,8 @@
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
     "@react-native-firebase/app": "^6.7.1",
-    "expo": "^37.0.8",
+    "expo": "^37.0.9",
+    "expo-font": "~8.1.0",
     "expo-image-picker": "~8.1.0",
     "expo-permissions": "~8.1.0",
     "firebase": "7.7.0",
@@ -21,11 +22,13 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "1.5.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-paper": "3.6.0",
     "react-native-reanimated": "^1.8.0",
     "react-native-redash": "^13.6.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "^2.4.0",
+    "react-native-swiper": "^1.6.0-rc.3",
     "react-native-web": "~0.11.7",
     "react-navigation": "4.1.1",
     "react-navigation-material-bottom-tabs": "2.1.5",
@@ -33,7 +36,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "babel-preset-expo": "~8.1.0",
+    "metro": "^0.59.0",
+    "metro-core": "^0.59.0"
   },
   "private": true
 }

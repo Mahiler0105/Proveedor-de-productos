@@ -3,22 +3,17 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import { Input, Icon, Button } from "react-native-elements";
 
 import Colors from "../../../constants/Colors";
-
 import Loading from "../Loading";
-
 import * as firebase from "firebase";
 
 export default function LoginForm(props) {
   const { navigation } = props;
-
   const [email, setEmail] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const inputEmail = React.createRef();
-
   const [password, setPassword] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const inputPassword = React.createRef();
-
   const [hidePassword, setHidePassword] = useState(true);
   const [visibleLoading, setVisibleLoading] = useState(false);
 

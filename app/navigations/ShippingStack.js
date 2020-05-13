@@ -14,8 +14,8 @@ const ShippingScreenStack = createStackNavigator({
       title: "Envios",
       headerTintColor: "#fff",
       headerStyle: {
-        backgroundColor: Colors.secundaryColor,
-      },
+        backgroundColor: 'rgb(0,6,36)',
+      }, 
       // headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,
