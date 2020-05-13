@@ -1,7 +1,9 @@
 import React from "react";
+
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "react-native-elements";
 import Back from "../../components/Back";
+import { Button } from "react-native-paper";
 
 const About = (props) => {
   const { navigation } = props;
@@ -50,6 +52,12 @@ const About = (props) => {
         }}
       >
         <Text style={{ color: "#c2c2c2" }}>Versión de la App: 1.0</Text>
+        <Button
+          title="Agregar"
+          onPress={() => firebase.auth().signOut()}
+          buttonStyle={styles.btnSignOut}
+          containerStyle={styles.containerBtnSO}
+        />
       </View>
     </View>
   );

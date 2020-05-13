@@ -10,9 +10,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/logo-lrbtl.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/bg.png" 
     },
     "updates": {
       "fallbackToCacheTimeout": 0

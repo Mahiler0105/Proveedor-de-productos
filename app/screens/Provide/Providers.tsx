@@ -7,13 +7,15 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { NeuButton } from "react-native-neu-element";
 import { Image, Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { Suppliers, All } from "../../components/Supplier";
+
+import { LinearGradient } from "expo-linear-gradient";
+import { height, width } from "window-size";
 
 const db = firebase.firestore(firebaseApp);
 
@@ -54,20 +56,28 @@ function ListProvider(props) {
   const { proveedor, navigation } = props;
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 10,
-      }}
+    <LinearGradient
+      style={StyleSheet.absoluteFill}
+      start={{ x: 0.0, y: 0.25 }}
+      end={{ x: 0.5, y: 1.0 }}
+      locations={[0, 0.5, 0.6]}
+      colors={["#51616f", "#272d33"]}
     >
-      <View style={styles.container}>
-        {suppliers.all.map((track) => (
-          <Provide provider={track} navigation={navigation} />
-        ))}
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 10,
+        }}
+      >
+        <View style={styles.container}>
+          {suppliers.all.map((track) => (
+            <Provide provider={track} navigation={navigation} />
+          ))}
+        </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -94,12 +104,12 @@ function Provide(props) {
   console.log(id + "  " + nombre + "  " + logo);
 
   return (
-    <NeuButton
-      width={Layout.window.width / 2 - 54}
-      height={Layout.window.width / 2 - 54}
-      color="#eef2f9"
-      borderRadius={80}
-      style={{ marginLeft: 22, marginRight: 22, marginTop: 17 }}
+    <TouchableOpacity
+      style={{
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 17,
+      }}
       onPress={() => {
         navigation.navigate("Products", { proveedor: provider });
       }}
@@ -109,34 +119,13 @@ function Provide(props) {
         rounded
         size="xlarge"
         avatarStyle={{
-          padding: 0,
+          padding: 2,
           width: Layout.window.width / 2 - 50,
           height: Layout.window.width / 2 - 50,
         }}
       />
-    </NeuButton>
-    // <TouchableOpacity
-    //   style={{
-    //     marginLeft: 20,
-    //     marginRight: 20,
-    //     marginTop: 17,
-    //   }}
-    //   onPress={() => {
-    //     navigation.navigate("Products", { proveedor: provider });
-    //   }}
-    // >
-    //   <Avatar
-    //     source={{ uri: image }}
-    //     rounded
-    //     size="xlarge"
-    //     avatarStyle={{
-    //       padding: 2,
-    //       width: Layout.window.width / 2 - 50,
-    //       height: Layout.window.width / 2 - 50,
-    //     }}
-    //   />
-    //   <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
-    // </TouchableOpacity>
+      <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
+    </TouchableOpacity>
   );
 }
 

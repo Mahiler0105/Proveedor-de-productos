@@ -163,13 +163,6 @@ const HeaderUp = (props) => {
             Cerrar Sesión
           </Text>
         </NeuButton>
-        {/* <AccountOptions navigation={navigation} /> */}
-        {/* <Button
-            title="Cerrar Sesión"
-            onPress={() => firebase.auth().signOut()}
-            buttonStyle={styles.btnSignOut}
-            containerStyle={styles.containerBtnSO}
-          /> */}
       </View>
     </View>
   );

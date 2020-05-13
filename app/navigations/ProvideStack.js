@@ -5,10 +5,10 @@ import { createStackNavigator } from "react-navigation-stack";
 import Colors from "../../constants/Colors";
 
 import ProviderScreen from "../screens/Provide/Providers";
-import ProductScreen from "../screens/Provide/Testing";
+import ProductScreen from "../screens/Provide/Products";
 import InfoProviderScreen from "../screens/Provide/InfoProvide";
 
-
+import { RadialGradient } from "expo-linear-gradient";
 
 // const width = 155;
 // const height = 35;
@@ -20,8 +20,9 @@ const ProvideScreenStack = createStackNavigator({
       title: "Proveedores",
       headerTintColor: "#fff",
       headerStyle: {
-        backgroundColor: Colors.secundaryColor,
-      },
+        backgroundColor: 'rgb(0,6,36)',
+      },      
+      
       headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,
@@ -30,26 +31,7 @@ const ProvideScreenStack = createStackNavigator({
   Products: {
     screen: ProductScreen,
     navigationOptions: (props) => ({
-      title: props.navigation.state.params.proveedor.nombre,
-      /*headerTintColor: "#fff",
-      headerRight: () => (
-        <Icon
-          type="material-community"
-          name="dots-vertical"
-          size={25}
-          color="#fff"
-          onPress={() => {
-            props.navigation.navigate("InfoProviders", {
-              proveedor: props.navigation.state.params.proveedor,
-            });
-          }}
-        />
-      ),
-      headerRightContainerStyle: { marginRight: 10 },
-      headerStyle: {
-        backgroundColor: Colors.secundaryColor,
-      },*/
-      headerTitleAlign: "center",
+      title: props.navigation.state.params.proveedor.nombre,     
       headerTransparent: false,
       headerShown: false,
     }),
@@ -60,8 +42,8 @@ const ProvideScreenStack = createStackNavigator({
       title: "Informacion proveedor",
       headerTintColor: "#fff",
       headerStyle: {
-        backgroundColor: Colors.secundaryColor,
-      },
+        backgroundColor: 'rgb(0,6,36)',
+      }, 
       headerTitleAlign: "center",
       //headerTransparent: false,
       //   headerShown: false,

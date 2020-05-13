@@ -1,77 +1,64 @@
-import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Image, ScrollView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { withNavigation } from "react-navigation";
-import { Divider } from "react-native-elements";
 
-import LoginForm from "../../components/Account/LoginForm";
-import LoginFacebook from "../../components/Account/LoginFacebook";
+import { Dimensions } from "react-native";
+import { Asset } from "expo-asset";
+import { AppLoading } from "expo";
+import Log from "../../components/Account/Log";
+import Animated, { Easing } from "react-native-reanimated";
+import LoadingFull from "../../components/LoadingFull";
 
-import Colors from "../../../constants/Colors";
+const { width, height } = Dimensions.get("window");
+
+function cacheImages(images) {
+  return images.map((image) => {
+    if (typeof image === "string") {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image).downloadAsync();
+    }
+  });
+}
 
 const Login = (props) => {
   const { navigation } = props;
 
-  return (
-    <ScrollView style={styles.contenedor}>
-      <KeyboardAwareScrollView enableOnAndroid={true}>
-        <Image
-          source={require("../../../assets/logo2.png")}
-          resizeMode="contain"
-          style={styles.logo}
-        />
-        <View style={styles.viewContainer}>
-          <LoginForm navigation={navigation} />
-          <CreateAccount navigation={navigation} />
-        </View>
-      </KeyboardAwareScrollView>
-    </ScrollView>
-  );
-};
+  const [ready, setReady] = useState(false);
 
-const CreateAccount = (props) => {
-  const { navigation } = props;
-  console.log(navigation);
-
+  if (!ready) {
+    return (
+      <AppLoading
+        startAsync={async () => {
+          const imageAssets = cacheImages([
+            require("../../../assets/logo.png"),
+          ]);
+          await Promise.all([...imageAssets]);
+        }}
+        onFinish={setReady(true)}
+        onError={console.warn}
+      >
+        <LoadingFull isVisible={true} />
+      </AppLoading>
+    );
+  }
   return (
-    <View style={styles.containerCreate}>
-      <Text> ¿Aún no tienes cuenta? </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-        <Text style={styles.btnRegister}>Registrate</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, height: height - 15 }}>
+        <KeyboardAwareScrollView enableOnAndroid={true}>
+          <Animated.View style={{ height: height - 15 }}>
+            <Image
+              source={require("../../../assets/logo.png")}
+              style={{ flex: 1, width: null, height: height, marginTop: -20 }}
+            />
+          </Animated.View>
+
+          <Log navigation={navigation} />
+        </KeyboardAwareScrollView>
+      </ScrollView>
     </View>
   );
 };
-export default withNavigation(Login);
 
-const styles = StyleSheet.create({
-  contenedor: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  logo: {
-    width: "100%",
-    height: 220,
-    marginTop: 60,
-  },
-  viewContainer: {
-    marginRight: 25,
-    marginLeft: 25,
-  },
-  btnRegister: {
-    color: Colors.primaryColor,
-    fontWeight: "bold",
-  },
-  containerCreate: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 15,
-  },
-});
+export default withNavigation(Login);

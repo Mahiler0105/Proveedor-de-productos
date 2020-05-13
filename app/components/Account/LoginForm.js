@@ -3,22 +3,17 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import { Input, Icon, Button } from "react-native-elements";
 
 import Colors from "../../../constants/Colors";
-
 import Loading from "../Loading";
-
 import * as firebase from "firebase";
 
 export default function LoginForm(props) {
   const { navigation } = props;
-
   const [email, setEmail] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const inputEmail = React.createRef();
-
   const [password, setPassword] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const inputPassword = React.createRef();
-
   const [hidePassword, setHidePassword] = useState(true);
   const [visibleLoading, setVisibleLoading] = useState(false);
 
@@ -136,11 +131,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
+    marginTop: 5,
   },
   inputForm: {
     width: "100%",
-    marginTop: 15,
+    marginTop: 8,
   },
   inputContainer: {
     borderColor: Colors.secundaryColor,
@@ -163,7 +158,8 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   btnContainerLogin: {
-    marginTop: 15,
+    marginTop: 8,
+    marginBottom: 0,
     width: "95%",
   },
   btnLogin: {
