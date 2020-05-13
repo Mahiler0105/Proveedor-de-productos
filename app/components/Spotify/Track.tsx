@@ -13,9 +13,10 @@ import "firebase/firestore";
 interface TrackProps {
   track: Track;
   a: (j: boolean) => void;
+  b: (j: any) => void;
 }
 
-export default ({ track, a }: TrackProps) => {
+export default ({ track, a, b }: TrackProps) => {
   const [image, setImage] = useState("");
   useEffect(() => {
     firebase
@@ -103,7 +104,7 @@ export default ({ track, a }: TrackProps) => {
               }}
               onPress={() => {
                 console.log("press");
-
+                b(track);
                 a(true);
               }}
               title="AGREGAR A CARRITO"

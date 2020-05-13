@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
+import { NeuButton } from "react-native-neu-element";
 import { Image, Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
@@ -93,12 +94,12 @@ function Provide(props) {
   console.log(id + "  " + nombre + "  " + logo);
 
   return (
-    <TouchableOpacity
-      style={{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 17,
-      }}
+    <NeuButton
+      width={Layout.window.width / 2 - 54}
+      height={Layout.window.width / 2 - 54}
+      color="#eef2f9"
+      borderRadius={80}
+      style={{ marginLeft: 22, marginRight: 22, marginTop: 17 }}
       onPress={() => {
         navigation.navigate("Products", { proveedor: provider });
       }}
@@ -108,13 +109,34 @@ function Provide(props) {
         rounded
         size="xlarge"
         avatarStyle={{
-          padding: 2,
+          padding: 0,
           width: Layout.window.width / 2 - 50,
           height: Layout.window.width / 2 - 50,
         }}
       />
-      <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
-    </TouchableOpacity>
+    </NeuButton>
+    // <TouchableOpacity
+    //   style={{
+    //     marginLeft: 20,
+    //     marginRight: 20,
+    //     marginTop: 17,
+    //   }}
+    //   onPress={() => {
+    //     navigation.navigate("Products", { proveedor: provider });
+    //   }}
+    // >
+    //   <Avatar
+    //     source={{ uri: image }}
+    //     rounded
+    //     size="xlarge"
+    //     avatarStyle={{
+    //       padding: 2,
+    //       width: Layout.window.width / 2 - 50,
+    //       height: Layout.window.width / 2 - 50,
+    //     }}
+    //   />
+    //   <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
+    // </TouchableOpacity>
   );
 }
 

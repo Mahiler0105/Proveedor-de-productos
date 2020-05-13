@@ -15,19 +15,21 @@ const { Value } = Animated;
 
 export default ({ album }: AlbumProps) => {
   const [visible, setVisible] = useState(false);
-  let a = setVisible;
   const [renderItem, setRenderItem] = useState(null);
+  let a = setVisible;
+  let b = setRenderItem;
   console.log("AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:");
   console.log(album);
+  console.log("render item");
+  console.log(renderItem);
   const y = new Value(0);
-
   return (
     <View style={styles.container}>
       <Cover {...{ y, album }} />
-      <Content {...{ y, album, a }} />
+      <Content {...{ y, album, a, b }} />
       <Modal isVisible={visible} setIsVisible={setVisible}>
         <View>
-          <Text>JOJOJO</Text>
+          <Text>JOJO</Text>
         </View>
       </Modal>
     </View>

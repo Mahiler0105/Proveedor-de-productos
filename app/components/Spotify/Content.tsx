@@ -4,8 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import { onScrollEvent } from "react-native-redash";
 
-import { Album, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT } from "./Model";
-import Track from "./Track";
+import { Album, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT, Track } from "./Model";
+import Tracks from "./Track";
 import ShufflePlay, { BUTTON_HEIGHT } from "./ShufflePlay";
 import Header from "./Header";
 
@@ -13,11 +13,12 @@ interface ContentProps {
   album: Album;
   y: Animated.Value<number>;
   a: (j: boolean) => void;
+  b: (item: any) => void;
 }
 
 const { interpolate, Extrapolate } = Animated;
 
-export default ({ album: { artist, tracks }, y, a }: ContentProps) => {
+export default ({ album: { artist, tracks }, y, a, b }: ContentProps) => {
   const height = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, -BUTTON_HEIGHT / 2],
     outputRange: [0, MAX_HEADER_HEIGHT + BUTTON_HEIGHT],
@@ -57,7 +58,7 @@ export default ({ album: { artist, tracks }, y, a }: ContentProps) => {
       </View>
       <View style={styles.tracks}>
         {tracks.map((track, key) => (
-          <Track {...{ track, a }} />
+          <Tracks {...{ track, a, b }} />
         ))}
       </View>
     </Animated.ScrollView>

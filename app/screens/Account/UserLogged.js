@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
 import { ListItem } from "react-native-elements";
+import { NeuView, NeuButton } from "react-native-neu-element";
 import LoadingFull from "../../components/LoadingFull";
 
 import * as Permissions from "expo-permissions";
@@ -55,7 +56,7 @@ const UserLogged = (props) => {
         setReloadData={setReloadData}
         vendedor={vendedor}
       ></HeaderUp>
-      <Options navigation={navigation}></Options>
+      <Options navigation={navigation} vendedor={vendedor}></Options>
     </View>
   );
 };
@@ -129,34 +130,61 @@ const HeaderUp = (props) => {
               : "https://api.adorable.io/avatars/266/abott@adorable.png",
           }}
         />
+
         <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
           {vendedor.nombre == undefined
             ? ""
             : vendedor.nombre + " " + vendedor.apellidos}
         </Text>
+
         <Text style={{ textAlign: "center", fontSize: 15, marginTop: 10 }}>
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 20,
+        }}
+      >
+        <NeuButton color="#eef2f9" height={45} width={400} borderRadius={16}>
+          <Text
+            style={{
+              textAlign: "center",
+              paddingTop: 12,
+              color: "#fff",
+              backgroundColor: "#f0615a",
+              width: 400,
+              height: 45,
+              borderRadius: 16,
+            }}
+          >
+            Cerrar Sesión
+          </Text>
+        </NeuButton>
         {/* <AccountOptions navigation={navigation} /> */}
-        <Button
-          title="Cerrar Sesión"
-          onPress={() => firebase.auth().signOut()}
-          buttonStyle={styles.btnSignOut}
-          containerStyle={styles.containerBtnSO}
-        />
+        {/* <Button
+            title="Cerrar Sesión"
+            onPress={() => firebase.auth().signOut()}
+            buttonStyle={styles.btnSignOut}
+            containerStyle={styles.containerBtnSO}
+          /> */}
       </View>
     </View>
   );
 };
 
 const Options = (props) => {
-  const { navigation } = props;
+  const { navigation, vendedor } = props;
+  console.log(vendedor);
+
   return (
     <View>
       {list.map((item, i) => (
-        <TouchableOpacity onPress={() => navigation.navigate(item.navigate)}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(item.navigate, { vendedor })}
+        >
           <ListItem
             key={i}
             title={item.title}
