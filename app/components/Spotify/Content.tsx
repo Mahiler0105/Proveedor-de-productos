@@ -1,14 +1,10 @@
 import * as React from "react";
-import {
-  StyleSheet, View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import { onScrollEvent } from "react-native-redash";
 
-import {
-  Album, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT,
-} from "./Model";
+import { Album, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT } from "./Model";
 import Track from "./Track";
 import ShufflePlay, { BUTTON_HEIGHT } from "./ShufflePlay";
 import Header from "./Header";
@@ -16,13 +12,12 @@ import Header from "./Header";
 interface ContentProps {
   album: Album;
   y: Animated.Value<number>;
+  a: (j: boolean) => void;
 }
 
-const {
-  interpolate, Extrapolate,
-} = Animated;
+const { interpolate, Extrapolate } = Animated;
 
-export default ({ album: { artist, tracks }, y }: ContentProps) => {
+export default ({ album: { artist, tracks }, y, a }: ContentProps) => {
   const height = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, -BUTTON_HEIGHT / 2],
     outputRange: [0, MAX_HEADER_HEIGHT + BUTTON_HEIGHT],
@@ -42,9 +37,7 @@ export default ({ album: { artist, tracks }, y }: ContentProps) => {
       stickyHeaderIndices={[1]}
     >
       <View style={styles.cover}>
-        <Animated.View
-          style={[styles.gradient, { height }]}
-        >
+        <Animated.View style={[styles.gradient, { height }]}>
           <LinearGradient
             style={StyleSheet.absoluteFill}
             start={[0, 0.3]}
@@ -53,7 +46,9 @@ export default ({ album: { artist, tracks }, y }: ContentProps) => {
           />
         </Animated.View>
         <View style={styles.artistContainer}>
-          <Animated.Text style={[styles.artist, { opacity }]}>{artist}</Animated.Text>
+          <Animated.Text style={[styles.artist, { opacity }]}>
+            {artist}
+          </Animated.Text>
         </View>
       </View>
       <View style={styles.header}>
@@ -61,14 +56,9 @@ export default ({ album: { artist, tracks }, y }: ContentProps) => {
         <ShufflePlay />
       </View>
       <View style={styles.tracks}>
-        {
-          tracks.map((track, key) => (
-            <Track
-              
-              {...{ track }}
-            />
-          ))
-        }
+        {tracks.map((track, key) => (
+          <Track {...{ track, a }} />
+        ))}
       </View>
     </Animated.ScrollView>
   );
@@ -94,10 +84,8 @@ const styles = StyleSheet.create({
     marginBottom: -1.25 * BUTTON_HEIGHT,
     justifyContent: "center",
     alignItems: "center",
-    
   },
   artist: {
-    
     textAlign: "center",
     color: "white",
     fontSize: 48,
@@ -105,7 +93,6 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: -BUTTON_HEIGHT,
-    
   },
   tracks: {
     paddingTop: 10,

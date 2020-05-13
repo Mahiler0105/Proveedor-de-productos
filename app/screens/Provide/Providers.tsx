@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import { Image, Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import {Suppliers, All} from "../../components/Supplier";
+import { Suppliers, All } from "../../components/Supplier";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { height, width } from "window-size";
@@ -27,14 +34,14 @@ export default function Providers(props) {
             let proveedor = doc.data();
             proveedor.id = doc.id;
             resultProvider.push({ proveedor });
-            
+
             const temp: All = {
-                id: doc.id,
-                name: doc.data().nombre,
-                logo: doc.data().logo,
-                cover: doc.data().cover
-              }
-              suppliers.all.push(temp) 
+              id: doc.id,
+              name: doc.data().nombre,
+              logo: doc.data().logo,
+              cover: doc.data().cover,
+            };
+            suppliers.all.push(temp);
           });
           setProveedor(resultProvider);
         })
@@ -42,14 +49,14 @@ export default function Providers(props) {
     })();
   }, []);
 
- 
   return <ListProvider proveedor={proveedor} navigation={navigation} />;
 }
 
 function ListProvider(props) {
   const { proveedor, navigation } = props;
-  
+
   return (
+
     <LinearGradient 
     style={StyleSheet.absoluteFill}
     start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
@@ -66,12 +73,10 @@ function ListProvider(props) {
       <View style={styles.container}>
       {
         suppliers.all.map((track) => (
-          <Provide provider={track} navigation={navigation} />
-        ))
-      }    
 
-    </View>
-        
+          <Provide provider={track} navigation={navigation} />
+        ))}
+      </View>
     </View>
     </LinearGradient>
   );
@@ -126,8 +131,8 @@ function Provide(props) {
 }
 
 const suppliers: Suppliers = {
-  all: []
-}
+  all: [],
+};
 
 const styles = StyleSheet.create({
   logo: {
@@ -135,17 +140,16 @@ const styles = StyleSheet.create({
   },
   container: {
     marginLeft: 15,
-    marginRight: 15, 
+    marginRight: 15,
     width: "100%",
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start' ,
-    
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
   },
   item: {
-    width: '50%',
+    width: "50%",
     backgroundColor: "yellow",
-    zIndex: 100000000
-  }
+    zIndex: 100000000,
+  },
 });
