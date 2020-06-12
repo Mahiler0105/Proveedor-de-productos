@@ -8,7 +8,7 @@ import LoginScreen from "../screens/Account/Login";
 import RegisterScreen from "../screens/Account/Register";
 import Register_two_Screen from "../screens/Account/Register_two";
 
-import SettingsScreen from "../screens/Account/Settings";
+import Settings from "../screens/Account/Settings";
 import StoresScreen from "../screens/Account/Stores";
 import AppPreferencesScreen from "../screens/Account/AppPreferences";
 import AboutScreen from "../screens/Account/About";
@@ -47,7 +47,7 @@ const AccountScreenStack = createStackNavigator({
   },
 
   Settings: {
-    screen: SettingsScreen,
+    screen: Settings,
     navigationOptions: () => ({
       headerShown: false,
     }),

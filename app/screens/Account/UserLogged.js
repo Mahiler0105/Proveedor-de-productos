@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
 import { ListItem } from "react-native-elements";
-import { NeuView, NeuButton } from "react-native-neu-element";
 import LoadingFull from "../../components/LoadingFull";
 
 import * as Permissions from "expo-permissions";
@@ -148,8 +147,7 @@ const HeaderUp = (props) => {
           padding: 20,
         }}
       >
-        <NeuButton color="#eef2f9" height={45} width={400} borderRadius={16}>
-          <Text
+         <Text
             style={{
               textAlign: "center",
               paddingTop: 12,
@@ -162,7 +160,7 @@ const HeaderUp = (props) => {
           >
             Cerrar Sesión
           </Text>
-        </NeuButton>
+        
       </View>
     </View>
   );
@@ -176,10 +174,10 @@ const Options = (props) => {
     <View>
       {list.map((item, i) => (
         <TouchableOpacity
-          onPress={() => navigation.navigate(item.navigate, { vendedor })}
+          key={i.toString()} onPress={() => navigation.navigate(item.navigate, { vendedor })}
         >
           <ListItem
-            key={i}
+            key={i.toString()}
             title={item.title}
             leftIcon={{ name: item.icon, type: item.type }}
             bottomDivider

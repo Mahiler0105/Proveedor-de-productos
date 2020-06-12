@@ -1,40 +1,36 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-import { Image, Avatar } from "react-native-elements";
+import {  View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import { Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { Suppliers, All } from "../../components/Supplier";
-
 import { LinearGradient } from "expo-linear-gradient";
-import { height, width } from "window-size";
+import LoadingFull from "../../components/LoadingFull"
 
 const db = firebase.firestore(firebaseApp);
+const suppliers: Suppliers = {
+  all: [],
+};
 
 export default function Providers(props) {
   const { navigation } = props;
-  const [proveedor, setProveedor] = useState([]);
+  const [ready, setReady] = useState(false);  
 
   useEffect(() => {
-    (async () => {
-      const resultProvider = [];
-      const proveedores = await db
+    let cont = 0;
+    let cant = 0;
+    suppliers.all =[];
+    (async () => {     
+      
+      await db
         .collection("Proveedor")
         .get()
         .then((response) => {
-          response.forEach((doc) => {
-            let proveedor = doc.data();
-            proveedor.id = doc.id;
-            resultProvider.push({ proveedor });
+          cant = response.docs.length;
 
+          response.forEach((doc) => {
             const temp: All = {
               id: doc.id,
               name: doc.data().nombre,
@@ -43,99 +39,65 @@ export default function Providers(props) {
             };
             suppliers.all.push(temp);
           });
-          setProveedor(resultProvider);
+          
+          console.log(suppliers);
+          let all = suppliers.all;
+          for(let a=0;a<all.length;a++){
+            firebase.storage().ref(all[a].logo).getDownloadURL().then(function (result) {             
+              cont++      
+              all[a].logo = result;   
+              console.log(cont)    
+              if (cont == cant) {
+                setReady(true)
+              }         
+            }).catch(function (error) {
+              console.log("EEEEE" + error);
+            }); 
+          }
         })
         .catch((error) => console.log("Error" + error));
     })();
   }, []);
-
-  return <ListProvider proveedor={proveedor} navigation={navigation} />;
-}
-
-function ListProvider(props) {
-  const { proveedor, navigation } = props;
-
-  return (
-    <LinearGradient
-      style={StyleSheet.absoluteFill}
-      start={{ x: 0.0, y: 0.25 }}
-      end={{ x: 0.5, y: 1.0 }}
-      locations={[0, 0.5, 0.6]}
-      colors={["#51616f", "#272d33"]}
-    >
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 10,
-        }}
-      >
+  if (!ready) {
+    return <LoadingFull isVisible={true} text={"Cargando proveedores..."}/>;
+  }
+  else {
+    return (    
+      <LinearGradient style={StyleSheet.absoluteFill} start={{ x: 0.0, y: 0.25 }}
+      end={{ x: 0.5, y: 1.0 }} locations={[0, 0.5]} colors={["#51616f", "#272d33"]} >
+      <View style={styles.super}>
         <View style={styles.container}>
-          {suppliers.all.map((track) => (
-            <Provide provider={track} navigation={navigation} />
+          {suppliers.all.map((track, key) => (
+            <Provider key={key.toString()} provider={track} navigation={navigation} />
           ))}
         </View>
       </View>
     </LinearGradient>
-  );
+    )
+  }  
 }
 
-function Provide(props) {
+function Provider(props) {
   const { provider, navigation } = props;
-  const { id, logo, nombre } = provider;
-  const [image, setImage] = useState(null);
-  console.log(navigation);
-
-  useEffect(() => {
-    firebase
-      .storage()
-      .ref(logo)
-      .getDownloadURL()
-      .then((result) => {
-        console.log(result);
-
-        setImage(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  console.log(id + "  " + nombre + "  " + logo);
+  const { logo, nombre } = provider;  
 
   return (
-    <TouchableOpacity
-      style={{
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 17,
-      }}
-      onPress={() => {
-        navigation.navigate("Products", { proveedor: provider });
-      }}
-    >
-      <Avatar
-        source={{ uri: image }}
-        rounded
-        size="xlarge"
-        avatarStyle={{
-          padding: 2,
-          width: Layout.window.width / 2 - 50,
-          height: Layout.window.width / 2 - 50,
-        }}
-      />
+    <TouchableOpacity style={styles.touch} onPress={() => {navigation.navigate("Products", { proveedor: provider });}}>
+      <Avatar source={{ uri: logo }} rounded size="xlarge" avatarStyle={styles.avatar}/>
       <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
     </TouchableOpacity>
   );
 }
 
-const suppliers: Suppliers = {
-  all: [],
-};
-
 const styles = StyleSheet.create({
   logo: {
     borderRadius: 50,
+  },
+  super:{
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
   },
   container: {
     marginLeft: 15,
@@ -151,4 +113,14 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
     zIndex: 100000000,
   },
+  touch:{
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 17,
+  },
+  avatar:{
+    padding: 2,
+    width: Layout.window.width / 2 - 50,
+    height: Layout.window.width / 2 - 50,
+  }
 });

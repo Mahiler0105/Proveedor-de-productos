@@ -1,15 +1,9 @@
 import * as React from "react";
-import {
-  Image, StyleSheet,
-} from "react-native";
+import {  Image, StyleSheet, ActivityIndicator} from "react-native";
 import Animated from "react-native-reanimated";
 import { Album, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
 import { BUTTON_HEIGHT } from "./ShufflePlay";
-
-import { useState, useEffect } from "react";
-import { firebaseApp } from "../../utils/Firebase";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import Layout from "../../../constants/Layout";
 
 interface CoverProps {
   album: Album;
@@ -18,20 +12,7 @@ interface CoverProps {
 
 const { interpolate, Extrapolate } = Animated;
 
-export default ({ album: { cover }, y }: CoverProps) => {
-  const [image, setImage] = useState("");
-  useEffect(()=>{
-    firebase
-      .storage()
-      .ref(cover)
-      .getDownloadURL()
-      .then( (result) => {        
-        setImage(result);
-      })
-      .catch((error) => {
-        console.log("EEEEE" + error);
-      });    
-  },[])
+export default ({ album: { cover }, y }: CoverProps) => {  
  
   const scale: any = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, 0],
@@ -45,7 +26,12 @@ export default ({ album: { cover }, y }: CoverProps) => {
   });
   return (
     <Animated.View style={[styles.container, { transform: [{ scale }] }]}>
-      <Image style={styles.image}  source={{uri: image,}}  />
+      
+      {cover ? (<Image style={styles.image}  source={{uri: cover}}  />):(
+        <ActivityIndicator color="#190976" size="large" style={{width: Layout.window.width / 3,
+          height: Layout.window.height / 5}}/>
+      )}
+
       <Animated.View
         style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "black", opacity }}
       />

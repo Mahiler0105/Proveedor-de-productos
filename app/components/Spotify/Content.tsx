@@ -58,7 +58,7 @@ export default ({ album: { artist, tracks }, y, a, b }: ContentProps) => {
       </View>
       <View style={styles.tracks}>
         {tracks.map((track, key) => (
-          <Tracks {...{ track, a, b }} />
+          <Tracks key={key.toString()} {...{ track, a, b }} />
         ))}
       </View>
     </Animated.ScrollView>

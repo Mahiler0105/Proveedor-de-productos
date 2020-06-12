@@ -18,10 +18,7 @@ export default ({ album }: AlbumProps) => {
   const [renderItem, setRenderItem] = useState(null);
   let a = setVisible;
   let b = setRenderItem;
-  console.log("AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:");
-  console.log(album);
-  console.log("render item");
-  console.log(renderItem);
+  
   const y = new Value(0);
   return (
     <View style={styles.container}>

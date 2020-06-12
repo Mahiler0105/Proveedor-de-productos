@@ -5,10 +5,6 @@ import Layout from "../../../constants/Layout";
 import { Button } from "react-native-elements";
 import { Feather as Icon } from "@expo/vector-icons";
 import { Track } from "./Model";
-import { useState, useEffect } from "react";
-import { firebaseApp } from "../../utils/Firebase";
-import firebase from "firebase/app";
-import "firebase/firestore";
 
 interface TrackProps {
   track: Track;
@@ -17,20 +13,6 @@ interface TrackProps {
 }
 
 export default ({ track, a, b }: TrackProps) => {
-  const [image, setImage] = useState("");
-  useEffect(() => {
-    firebase
-      .storage()
-      .ref(track.image)
-      .getDownloadURL()
-      .then((result) => {
-        setImage(result);
-      })
-      .catch((error) => {
-        console.log("EEEEE" + error);
-      });
-  }, []);
-
   return (
     <View style={styles.row}>
       <TouchableOpacity
@@ -46,9 +28,9 @@ export default ({ track, a, b }: TrackProps) => {
           height: Layout.window.height / 4.5,
         }}
       >
-        {image ? (
+        {track.image ? (
           <Image
-            source={{ uri: image }}
+            source={{ uri: track.image }}
             style={{
               width: Layout.window.width / 3,
               height: Layout.window.height / 5,

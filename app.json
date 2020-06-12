@@ -20,6 +20,8 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "google-services.json",
+      "package": "com.lrtbl.lerietbool",
       "permissions": ["CAMERA_ROLL"]
     }
   }

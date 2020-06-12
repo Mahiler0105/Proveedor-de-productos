@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "579000212869",
+    "firebase_url": "https://lrtbl-6858b.firebaseio.com",
+    "project_id": "lrtbl-6858b",
+    "storage_bucket": "lrtbl-6858b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579000212869:android:9b6856183e0a64f17238ec",
+        "android_client_info": {
+          "package_name": "com.lrtbl.lerietbool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579000212869-1v942h9bskdueme72ka5ik6o56mg782b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4WaFJyr6xt8C496RhfRbWd7dJ0CyAERI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579000212869-1v942h9bskdueme72ka5ik6o56mg782b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
