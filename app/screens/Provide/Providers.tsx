@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import {  View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, SafeAreaView, ScrollView} from "react-native";
 import { Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
@@ -8,6 +8,12 @@ import "firebase/firestore";
 import { Suppliers, All } from "../../components/Supplier";
 import { LinearGradient } from "expo-linear-gradient";
 import LoadingFull from "../../components/LoadingFull"
+
+import Carousel from '../../components/Carrousel/Carrousel'
+import { offers } from '../../components/Carrousel/Offers'
+
+
+import Constants from 'expo-constants';
 
 const db = firebase.firestore(firebaseApp);
 const suppliers: Suppliers = {
@@ -65,13 +71,22 @@ export default function Providers(props) {
     return (    
       <LinearGradient style={StyleSheet.absoluteFill} start={{ x: 0.0, y: 0.25 }}
       end={{ x: 0.5, y: 1.0 }} locations={[0, 0.5]} colors={["#51616f", "#272d33"]} >
-      <View style={styles.super}>
-        <View style={styles.container}>
-          {suppliers.all.map((track, key) => (
-            <Provider key={key.toString()} provider={track} navigation={navigation} />
-          ))}
-        </View>
-      </View>
+        <SafeAreaView style={{flex:1}}><ScrollView>
+          <View style={styles.super}>
+
+            <View style={styles.container}>
+
+              <View style={styles.child}>
+                <Carousel data={offers} />
+              </View>
+              <View style={styles.child}>
+                {suppliers.all.map((track, key) => (
+                  <Provider key={key.toString()} provider={track} navigation={navigation} />
+                ))}
+              </View>
+            </View>
+          </View>
+        </ScrollView></SafeAreaView>      
     </LinearGradient>
     )
   }  
@@ -83,7 +98,19 @@ function Provider(props) {
 
   return (
     <TouchableOpacity style={styles.touch} onPress={() => {navigation.navigate("Products", { proveedor: provider });}}>
-      <Avatar source={{ uri: logo }} rounded size="xlarge" avatarStyle={styles.avatar}/>
+      
+      {logo ? (
+        <Avatar source={{ uri: logo }} rounded size="xlarge" avatarStyle={styles.avatar}/>
+      ) : (
+          <ActivityIndicator color="#190976" size="large"
+            style={{
+              width: Layout.window.width / 3,
+              height: Layout.window.height / 5,
+            }}
+          />
+        )}
+      
+      
       <Text style={{ textAlign: "center", fontSize: 17 }}> {nombre}</Text>
     </TouchableOpacity>
   );
@@ -99,12 +126,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
   },
-  container: {
+  container: {    
     marginLeft: 15,
     marginRight: 15,
     width: "100%",
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+  },  
+  child:{
+    flexDirection: 'row',
+    zIndex: 10000,
     flexWrap: "wrap",
     alignItems: "flex-start",
   },

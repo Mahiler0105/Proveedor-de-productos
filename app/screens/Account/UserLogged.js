@@ -140,13 +140,15 @@ const HeaderUp = (props) => {
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <View
+      <TouchableOpacity
         style={{
           justifyContent: "center",
           alignItems: "center",
           padding: 20,
         }}
-      >
+        onPress={() => {
+          firebase.auth().signOut();
+        }}>
          <Text
             style={{
               textAlign: "center",
@@ -161,7 +163,7 @@ const HeaderUp = (props) => {
             Cerrar Sesión
           </Text>
         
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

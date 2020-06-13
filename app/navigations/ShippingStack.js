@@ -1,13 +1,7 @@
-import React from "react";
-import { Image } from "react-native-elements";
-import Colors from "../../constants/Colors";
 import { createStackNavigator } from "react-navigation-stack";
-
 import ShippingScreen from "../screens/Shipping/Shipping";
-// const width = 155;
-// const height = 35;
 
-const ShippingScreenStack = createStackNavigator({
+const Shipping = createStackNavigator({
   Providers: {
     screen: ShippingScreen,
     navigationOptions: () => ({
@@ -23,4 +17,4 @@ const ShippingScreenStack = createStackNavigator({
   },
 });
 
-export default ShippingScreenStack;
+export default Shipping;

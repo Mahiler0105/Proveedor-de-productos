@@ -15,32 +15,12 @@ interface TrackProps {
 export default ({ track, a, b }: TrackProps) => {
   return (
     <View style={styles.row}>
-      <TouchableOpacity
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignContent: "space-around",
-          marginTop: 12,
-          backgroundColor: "#f0615a",
-          padding: 7,
-          borderRadius: 10,
-          height: Layout.window.height / 4.5,
-        }}
-      >
+      <TouchableOpacity style={styles.touch} >
+        
         {track.image ? (
-          <Image
-            source={{ uri: track.image }}
-            style={{
-              width: Layout.window.width / 3,
-              height: Layout.window.height / 5,
-              borderRadius: 12,
-            }}
-          />
+          <Image source={{ uri: track.image }} style={styles.imgprod}/>
         ) : (
-          <ActivityIndicator
-            color="#190976"
-            size="large"
+          <ActivityIndicator color="#190976" size="large"
             style={{
               width: Layout.window.width / 3,
               height: Layout.window.height / 5,
@@ -51,75 +31,29 @@ export default ({ track, a, b }: TrackProps) => {
           <Text style={{ fontSize: 20, color: "#190976", fontWeight: "bold" }}>
             {track.description}
           </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              color: "#fff",
-              marginBottom: 15,
-            }}
-          >
+          <Text style={{ fontSize: 14, color: "#fff", marginBottom: 15}}>
             {track.name}
           </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              color: "#fff",
-              fontWeight: "bold",
-            }}
-          >
+          <Text style={{fontSize: 14, color: "#fff", fontWeight: "bold"}}>
             S/. {track.price}0 x docena
           </Text>
-          <View
-            style={{
-              marginTop: 15,
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              titleStyle={{
-                fontSize: 10,
-                color: "#fff",
-                fontWeight: "bold",
-              }}
+          <View style={{ marginTop: 15, flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+            <Button titleStyle={{fontSize: 10, color: "#fff", fontWeight: "bold"}}
               onPress={() => {
                 console.log("press");
                 b(track);
                 a(true);
               }}
-              title="AGREGAR A CARRITO"
-              buttonStyle={{
-                width: 165,
-                marginRight: 5,
-                borderRadius: 5,
+              title="AGREGAR A CARRITO" buttonStyle={{ width: 165, marginRight: 5, borderRadius: 5,
                 backgroundColor: "#190976",
               }}
             />
-            <Button
-              iconRight
-              // disabled
-              icon={
-                <Icon
-                  type="material-community"
-                  name="share-variant"
-                  size={16}
-                  color="#fff"
-                />
+            <Button iconRight icon={
+                <Icon type="material-community" name="share-variant" size={16} color="#fff" />
               }
-              titleStyle={{
-                fontSize: 10,
-                color: "#190976",
-                fontWeight: "bold",
-              }}
+              titleStyle={{fontSize: 10, color: "#190976", fontWeight: "bold", }}
               title=""
-              buttonStyle={{
-                width: 40,
-                borderRadius: 5,
-                backgroundColor: "#190976",
-                margin: 0,
-              }}
+              buttonStyle={{width: 40, borderRadius: 5, backgroundColor: "#190976", margin: 0}}
             />
           </View>
         </View>
@@ -139,13 +73,23 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
   },
-  index: {
-    color: "#b2b3b4",
+  index: { color: "#b2b3b4" },
+  artist: { color: "#b2b3b4" },
+  name: { color: "white"  },
+  touch:{
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "space-around",
+    marginTop: 12,
+    backgroundColor: "#f0615a",
+    padding: 7,
+    borderRadius: 10,
+    height: Layout.window.height / 4.5,
   },
-  artist: {
-    color: "#b2b3b4",
-  },
-  name: {
-    color: "white",
+  imgprod:{
+    width: Layout.window.width / 3,
+    height: Layout.window.height / 5,
+    borderRadius: 12,
   },
 });

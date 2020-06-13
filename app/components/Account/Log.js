@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity} from "react-native";
 
 import Animated, { Easing } from "react-native-reanimated";
 import { TapGestureHandler, State } from "react-native-gesture-handler";
@@ -17,23 +9,8 @@ import Colors from "../../../constants/Colors";
 
 import LoginForm from "./LoginForm";
 
-const {
-  Value,
-  event,
-  block,
-  cond,
-  eq,
-  set,
-  Clock,
-  startClock,
-  stopClock,
-  debug,
-  timing,
-  clockRunning,
-  interpolate,
-  concat,
-  Extrapolate,
-} = Animated;
+const { Value, event, block, cond, eq, set, Clock, startClock, stopClock,
+  debug, timing, clockRunning, interpolate, concat, Extrapolate} = Animated;
 
 function runTiming(clock, value, dest) {
   const state = {
@@ -210,7 +187,7 @@ class Log extends Component {
                   transform: [{ rotate: concat(this.rotation, "deg") }],
                 }}
               >
-                X
+                <Ionicons name="ios-close" size={20}></Ionicons>
               </Animated.Text>
             </Animated.View>
           </TapGestureHandler>

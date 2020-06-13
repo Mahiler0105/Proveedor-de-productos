@@ -7,7 +7,7 @@ const Settings = (props) =>{
   return (
     <View>
       <Back navigation={navigation}></Back>
-      <Text>Estas en la pantalla de Tiendas</Text>
+      <Text>Estas en la pantalla de Configuracion</Text>
     </View>
   );
 }

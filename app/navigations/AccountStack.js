@@ -1,35 +1,24 @@
-import React from "react";
-import { Image } from "react-native-elements";
-
 import { createStackNavigator } from "react-navigation-stack";
 
 import MyAccountScreen from "../screens/Account/MyAccount";
 import LoginScreen from "../screens/Account/Login";
 import RegisterScreen from "../screens/Account/Register";
 import Register_two_Screen from "../screens/Account/Register_two";
-
 import Settings from "../screens/Account/Settings";
 import StoresScreen from "../screens/Account/Stores";
 import AppPreferencesScreen from "../screens/Account/AppPreferences";
 import AboutScreen from "../screens/Account/About";
 
-// const width = 155;
-// const height = 35;
-
-const AccountScreenStack = createStackNavigator({
+const Account = createStackNavigator({
   MyAccount: {
     screen: MyAccountScreen,
     navigationOptions: () => ({
-      //   title: "My account",
-      // headerTitleAlign: "center",
-      //headerTransparent: false,
       headerShown: false,
     }),
   },
   Login: {
     screen: LoginScreen,
-    navigationOptions: () => ({
-      // headerTitleAlign: "center",
+    navigationOptions: () => ({      
       headerShown: false,
     }),
   },
@@ -72,4 +61,4 @@ const AccountScreenStack = createStackNavigator({
   },
 });
 
-export default AccountScreenStack;
+export default Account;
