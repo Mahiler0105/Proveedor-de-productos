@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 
-import ProviderScreen from "../screens/Provide/Providers";
+import ProviderScreen from "../screens/Provide/Home";
 import ProductScreen from "../screens/Provide/Products";
 import InfoProviderScreen from "../screens/Provide/InfoProvide";
 

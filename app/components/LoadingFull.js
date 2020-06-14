@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get("window");
 export default (props) => {
   const { isVisible, text } = props;
   return (
-    <View isVisible={isVisible} style={styles.view}>
+    <View isVisible={isVisible} style={{...styles.view}}>
         <ActivityIndicator size={70} color={Colors.activeTabColor} />
         {text && <Text style={styles.text}>{text}</Text>}
     </View>

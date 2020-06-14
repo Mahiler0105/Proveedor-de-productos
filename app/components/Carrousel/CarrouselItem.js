@@ -19,7 +19,7 @@ const CarouselItem = ({ item }) => {
 const styles = StyleSheet.create({
     cardView: {
         flex: 1,
-        width: width - 40,
+        width: width - 20,
         height: height / 3,
         backgroundColor: 'white',
         margin: 10,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         left: 5,
     },
     image: {
-        width: width - 40,
+        width: width - 20,
         height: height / 3,
         borderRadius: 10
     },

@@ -14,13 +14,21 @@ function infiniteScroll(dataList){
     setInterval(function() {
         scrolled ++
         if(scrolled < numberOfData)
-        scrollValue = scrollValue + width-20
+        scrollValue = scrollValue + width
 
         else{
             scrollValue = 0
             scrolled = 0
-        }        
-        this.flatList.scrollToOffset({ animated: true, offset: scrollValue})
+        }   
+
+        if (flatList==null){
+            console.log('Cargando flat...')
+            console.log(flatList)
+            scrollValue = 0
+            scrolled = 0
+        } else {
+            flatList.scrollToOffset({ animated: true, offset: scrollValue})            
+        }   
         
     }, 6000)
 }
@@ -38,10 +46,10 @@ const Carousel = ({ data }) => {
 
     if (data && data.length) {
         return (
-            <View style={{width: width-20}}>
+            <View style={{width: width}}>
                 <View style={styles.flat}>
                     <FlatList data={data}
-                        ref = {(flatList) => {this.flatList = flatList}}
+                        ref = {(flt) => {flatList = flt}}
                         keyExtractor={(item, index) => 'key' + index}
                         horizontal
                         pagingEnabled
@@ -55,7 +63,7 @@ const Carousel = ({ data }) => {
                             [{ nativeEvent: { contentOffset: { x: scrollX } } }]
                         )}
                         windowSize={10}
-                        style =  {{ width:width-20}}
+                        style =  {{ width:width}}
                         
                     />
                 </View>               

@@ -19,3 +19,13 @@ export interface Details {
   export interface Products {
       all: Details[];
   }
+
+export interface Cat {
+    id: any,
+    name: string,
+    type: string,
+    icon: string,
+}
+export interface Category {
+    all: Cat[];
+}

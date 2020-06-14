@@ -3,7 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import Layout from "../../../constants/Layout";
 import { Button } from "react-native-elements";
-import { Feather as Icon } from "@expo/vector-icons";
+
+import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { Track } from "./Model";
 
 interface TrackProps {
@@ -27,8 +28,8 @@ export default ({ track, a, b }: TrackProps) => {
             }}
           />
         )}
-        <View style={{ marginLeft: 15, flex: 1, justifyContent: "center" }}>
-          <Text style={{ fontSize: 20, color: "#190976", fontWeight: "bold" }}>
+        <View style={{ margin: 10, flex: 1, justifyContent: "center"}}>
+          <Text style={{ fontSize: 22, color: "#190976", fontWeight: "bold" }}>
             {track.description}
           </Text>
           <Text style={{ fontSize: 14, color: "#fff", marginBottom: 15}}>
@@ -37,7 +38,7 @@ export default ({ track, a, b }: TrackProps) => {
           <Text style={{fontSize: 14, color: "#fff", fontWeight: "bold"}}>
             S/. {track.price}0 x docena
           </Text>
-          <View style={{ marginTop: 15, flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+          <View style={{marginTop: 15, flex: 1, flexDirection: "row", alignItems: "flex-end", justifyContent: "center"}}>
             <Button titleStyle={{fontSize: 10, color: "#fff", fontWeight: "bold"}}
               onPress={() => {
                 console.log("press");
@@ -80,16 +81,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignContent: "space-around",
+    //alignContent: "space-around",
+    alignItems: 'center',
     marginTop: 12,
     backgroundColor: "#f0615a",
-    padding: 7,
-    borderRadius: 10,
+    padding: 0,
+    borderRadius: 12,
     height: Layout.window.height / 4.5,
   },
   imgprod:{
     width: Layout.window.width / 3,
-    height: Layout.window.height / 5,
+    height: Layout.window.height / 4.5,
     borderRadius: 12,
+    paddingLeft: 0,
   },
 });
