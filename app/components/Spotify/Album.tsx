@@ -17,13 +17,12 @@ export default ({ album }: AlbumProps) => {
   const [visible, setVisible] = useState(false);
   const [renderItem, setRenderItem] = useState(null);
   let a = setVisible;
-  let b = setRenderItem;
-  
+    
   const y = new Value(0);
   return (
     <View style={styles.container}>
       <Cover {...{ y, album }} />
-      <Content {...{ y, album, a, b }} />
+      <Content {...{ y, album, a}} />
       <Modal isVisible={visible} setIsVisible={setVisible}>
         <View>
           <Text>JOJO</Text>

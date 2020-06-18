@@ -25,7 +25,7 @@ const Tab = createMaterialBottomTabNavigator({
     screen: Cart,
     navigationOptions: () => ({
       tabBarLabel: "Carrito",
-      tabBarColor: "#1f65ff",
+      tabBarColor: "rgb(92,80,158)",
       tabBarIcon: ({ tintColor }) => (
         <Icon type="material-community" name="basket" size={size} color={tintColor} />
       ),
@@ -35,7 +35,7 @@ const Tab = createMaterialBottomTabNavigator({
     screen: Shipping,
     navigationOptions: () => ({
       tabBarLabel: "Envios",
-      tabBarColor: "#694fad",
+      tabBarColor: "rgb(245,145,140)",
       tabBarIcon: ({ tintColor }) => (
         <Icon type="material-community" name="package" size={size} color={tintColor} />
       ),
@@ -45,7 +45,7 @@ const Tab = createMaterialBottomTabNavigator({
     screen: Account,
     navigationOptions: () => ({
       tabBarLabel: "Cuenta",
-      tabBarColor: "#d02860",
+      tabBarColor: "rgb(78,32,29)",
       tabBarIcon: ({ tintColor }) => (
         <Icon type="material-community" name="account" size={size} color={tintColor} />
       ),

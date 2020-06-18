@@ -13,12 +13,12 @@ interface ContentProps {
   album: Album;
   y: Animated.Value<number>;
   a: (j: boolean) => void;
-  b: (item: any) => void;
+  
 }
 
 const { interpolate, Extrapolate } = Animated;
 
-export default ({ album: { artist, tracks }, y, a, b }: ContentProps) => {
+export default ({ album: { artist, tracks }, y, a }: ContentProps) => {
   const height = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, -BUTTON_HEIGHT / 2],
     outputRange: [0, MAX_HEADER_HEIGHT + BUTTON_HEIGHT],
@@ -58,7 +58,7 @@ export default ({ album: { artist, tracks }, y, a, b }: ContentProps) => {
       </View>
       <View style={styles.tracks}>
         {tracks.map((track, key) => (
-          <Tracks key={key.toString()} {...{ track, a, b }} />
+          <Tracks key={key.toString()} {...{ track, a}} />
         ))}
       </View>
     </Animated.ScrollView>

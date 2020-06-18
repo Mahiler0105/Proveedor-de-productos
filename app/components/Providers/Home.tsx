@@ -21,10 +21,10 @@ export default function Home(props) {
         <View style={{...styles.child, marginTop: 30, marginHorizontal: 10}}>
           <View style={styles.section}>
             <Text style={styles.secTitle}>Categorias destacadas</Text>
-            <View style={styles.secIcon}>
+            <TouchableOpacity style={styles.secIcon}>
               <Text style={{fontSize:15, fontWeight: 'bold', color: 'white'}}>Todas</Text>
               <Icon color= '#fff' style={{justifyContent:'flex-end', fontSize: 15}} name='chevron-right' type="material-community"></Icon>
-            </View>                  
+            </TouchableOpacity>              
           </View>
           <FlatList data={categories.all}                        
             keyExtractor={(item, index) => 'key' + index}
@@ -40,10 +40,15 @@ export default function Home(props) {
         </View>
         <View style={{...styles.child, marginTop: 10, marginHorizontal: 10}}>
           <View style={styles.section}>
-            <Text style={styles.secTitle}>Proveedores destacados</Text>                            
+            <Text style={styles.secTitle}>Proveedores populares</Text>
+            <TouchableOpacity style={styles.secIcon}>
+              <Text style={{fontSize:15, fontWeight: 'bold', color: 'white'}}>Todos</Text>
+              <Icon color= '#fff' style={{justifyContent:'flex-end', fontSize: 15}} name='chevron-right' type="material-community"></Icon>
+            </TouchableOpacity>                            
           </View>
-          
-          <Providers navigation={navigation}></Providers>
+          <View style={{...styles.section,  flexWrap: 'wrap', alignItems: 'flex-start',}}>
+            <Providers navigation={navigation}></Providers>                        
+          </View>
         </View>
       </View>
     </View>      

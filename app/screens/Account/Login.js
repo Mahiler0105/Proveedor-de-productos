@@ -21,14 +21,16 @@ function cacheImages(images) {
     }
   });
 }
-
+const color = 'rgb(78,32,29)'
 const Login = (props) => {
   const { navigation } = props;
-
   const [ready, setReady] = useState(false);
+
+  
 
   if (!ready) {
     return (
+      <>
       <AppLoading
         startAsync={async () => {
           const imageAssets = cacheImages([
@@ -38,9 +40,10 @@ const Login = (props) => {
         }}
         onFinish={setReady(true)}
         onError={console.warn}
-      >
-        <LoadingFull isVisible={true} />
+      >        
       </AppLoading>
+      <LoadingFull isVisible={true} color={color} />
+      </>
     );
   }
   return (

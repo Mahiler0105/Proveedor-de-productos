@@ -3,16 +3,12 @@ import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
 import { ListItem } from "react-native-elements";
 import LoadingFull from "../../components/LoadingFull";
-
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-
 // import AccountOptions from "../../components/Account/AccountOptions";
-
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
-
 import { withNavigation } from "react-navigation";
 import { Updates } from "expo";
 
@@ -60,6 +56,8 @@ const UserLogged = (props) => {
   );
 };
 export default withNavigation(UserLogged);
+
+const color = 'rgb(78,32,29)'
 
 const HeaderUp = (props) => {
   const [ready, setReady] = useState(false);
@@ -112,7 +110,7 @@ const HeaderUp = (props) => {
   });
 
   if (!ready) {
-    return <LoadingFull isVisible={true} />;
+    //return <LoadingFull isVisible={true} color={color} text={'cargandooooooo'}/>;
   }
 
   return (
@@ -140,30 +138,11 @@ const HeaderUp = (props) => {
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <TouchableOpacity
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          padding: 20,
-        }}
-        onPress={() => {
-          firebase.auth().signOut();
-        }}>
-         <Text
-            style={{
-              textAlign: "center",
-              paddingTop: 12,
-              color: "#fff",
-              backgroundColor: "#f0615a",
-              width: 400,
-              height: 45,
-              borderRadius: 16,
-            }}
-          >
-            Cerrar Sesión
-          </Text>
-        
-      </TouchableOpacity>
+      <View style={{width: '100%', justifyContent: 'center',marginTop:15, alignItems: 'center'}}>
+        <TouchableOpacity style={styles.sigo} onPress={() => {firebase.auth().signOut();}}>
+          <Text style={styles.sigt}>Cerrar Sesión</Text>        
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -231,4 +210,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 180,
   },
+  sigo:{
+    width: '100%',
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: color,
+  },
+  sigt:{
+    fontSize: 17,
+    textAlign: "center",
+    color: "#fff",    
+    width: '100%',
+    //height: 45,
+    borderRadius: 10,
+  }
 });

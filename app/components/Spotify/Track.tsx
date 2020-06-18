@@ -9,11 +9,10 @@ import { Track } from "./Model";
 
 interface TrackProps {
   track: Track;
-  a: (j: boolean) => void;
-  b: (j: any) => void;
+  a: (j: boolean) => void;  
 }
 
-export default ({ track, a, b }: TrackProps) => {
+export default ({ track, a}: TrackProps) => {
   return (
     <View style={styles.row}>
       <TouchableOpacity style={styles.touch} >
@@ -29,11 +28,11 @@ export default ({ track, a, b }: TrackProps) => {
           />
         )}
         <View style={{ margin: 10, flex: 1, justifyContent: "center"}}>
-          <Text style={{ fontSize: 22, color: "#190976", fontWeight: "bold" }}>
-            {track.description}
+          <Text style={{ fontSize: 25, color: "#190976", fontWeight: "bold" }}>
+            {track.name}
           </Text>
           <Text style={{ fontSize: 14, color: "#fff", marginBottom: 15}}>
-            {track.name}
+            {track.description}
           </Text>
           <Text style={{fontSize: 14, color: "#fff", fontWeight: "bold"}}>
             S/. {track.price}0 x docena
@@ -41,8 +40,7 @@ export default ({ track, a, b }: TrackProps) => {
           <View style={{marginTop: 15, flex: 1, flexDirection: "row", alignItems: "flex-end", justifyContent: "center"}}>
             <Button titleStyle={{fontSize: 10, color: "#fff", fontWeight: "bold"}}
               onPress={() => {
-                console.log("press");
-                b(track);
+                console.log("press");                
                 a(true);
               }}
               title="AGREGAR A CARRITO" buttonStyle={{ width: 165, marginRight: 5, borderRadius: 5,

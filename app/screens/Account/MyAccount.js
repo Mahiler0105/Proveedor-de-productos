@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 
-import Loading from "../../components/Loading";
+import LoadingFull from "../../components/LoadingFull";
 import Login from "./Login";
 import UserLogged from "./UserLogged";
 
 import * as firebase from "firebase";
-
+const color = 'rgb(78,32,29)'
 export default MyAccount = (props) => {
   const [login, setLogin] = useState(null);
   const { navigation } = props;
@@ -18,7 +18,7 @@ export default MyAccount = (props) => {
   }, []);
 
   if (login === null) {
-    return <Loading isVisible={true} text="Cargando" />;
+    //return <LoadingFull isVisible={true} text="Cargando" color={color}/>;
   }
 
   return login ? <UserLogged /> : <Login />;

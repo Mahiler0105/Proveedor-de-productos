@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef} from "react";
-import {  View, Text, StyleSheet, TouchableOpacity, ActivityIndicator} from "react-native";
+import {  View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, FlatList} from "react-native";
 import { Avatar } from "react-native-elements";
 import { firebaseApp } from "../../utils/Firebase";
 import Layout from "../../../constants/Layout";
@@ -7,6 +7,8 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { Suppliers, All} from "../Supplier";
 import LoadingFull from "../LoadingFull"
+let width = Layout.window.width;
+let height = Layout.window.height
 
 const db = firebase.firestore(firebaseApp);
 const suppliers: Suppliers = {
@@ -64,14 +66,14 @@ export default function Providers(props) {
                 }
               })
               .catch((error) => console.log("Error" + error));
-          })();
+        })();
     
-        }
+      }
   });
   if (!ready) {
     return (
-      <View style={{backgroundColor: 'pink', width: Layout.window.width, height: Layout.window.height/5}}>
-        <LoadingFull isVisible={true} text={"Cargando proveedores..."}/>
+      <View style={{width: Layout.window.width-20, height: Layout.window.height/5}}>
+        <LoadingFull isVisible={true} text={"Cargando proveedores..."} color={'rgb(0,6,36)'} w={20}/>
       </View>
     )
     
@@ -80,21 +82,23 @@ export default function Providers(props) {
     return (  
     <>
       {suppliers.all.map((track, key) => (
-          <Provider key={key.toString()} provider={track} navigation={navigation} />
-      ))}
+          <Provider key={key.toString()} ind={key} provider={track} navigation={navigation} />
+      ))}     
+      
     </>    
     )
   }  
 }
 
 function Provider(props) {
-  const { provider, navigation } = props;
+  const { ind, provider, navigation } = props;
   const { logo, nombre } = provider;  
-
-  return (
-    <TouchableOpacity style={styles.touch} onPress={() => {navigation.navigate("Products", { proveedor: provider });}}>
+  
+  return (    
+    <TouchableOpacity style={(ind+1)%3==0 ? {marginRight:0}:{marginRight:5}} onPress={() => {navigation.navigate("Products", { proveedor: provider });}}>
       {logo ? (
-        <Avatar source={{ uri: logo }} rounded size={Layout.window.width/3-50} avatarStyle={styles.avatar}/>
+        <Image source={{uri: logo}} style={styles.image}></Image>
+        //<Avatar source={{ uri: logo }} rounded size={Layout.window.width/3-50} avatarStyle={styles.avatar}/>
       ) : (
           <ActivityIndicator color="#190976" size="large"
             style={{
@@ -110,11 +114,16 @@ function Provider(props) {
 }
 
 const styles = StyleSheet.create({
-  
+  image:{
+    width: (width-30)/3,
+    height: (width-30)/3,  
+    borderRadius: 20  
+  },
   touch:{
+    
     //backgroundColor:'pink'
-    //marginLeft: 20,
-    //marginRight: 20,
+    
+    //marginRight: 5,
     //marginTop: 17,
   },
   avatar:{

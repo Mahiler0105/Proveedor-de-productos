@@ -40,7 +40,7 @@ const Products = (props) => {
         
             db
             .collection("Producto")
-            .where("Proveedor", "==", id)
+            .where("Proveedor", "==", id).orderBy('Nombre')
             .get()
             .then((response) => {   
                     cant = response.docs.length;

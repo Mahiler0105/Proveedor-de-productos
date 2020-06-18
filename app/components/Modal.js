@@ -4,14 +4,14 @@ import Colors from "../../constants/Colors";
 import { Overlay } from "react-native-elements";
 
 export default function Modal(props) {
-  const { isVisible, setIsVisible, children } = props;
+  const { back, isVisible, setIsVisible, children } = props;
   const closeModal = () => setIsVisible(false);
   return (
     <Overlay
       isVisible={isVisible}
       windowBackgroundColor="rgba(0,0,0,.7)"
       overlayBackgroundColor="transparent"
-      overlayStyle={styles.overlay}
+      overlayStyle={{...styles.overlay, borderColor:back?back:'#000'}}
       onBackdropPress={closeModal}
     >
       {children}
@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
   overlay: {
     height: "auto",
     width: "90%",
-    backgroundColor: Colors.secundaryColor,
+    backgroundColor: '#fff',
     // borderColor: Colors.primaryColor,
-    borderRadius: 10,
+    borderRadius: 20,
     borderWidth: 2,
   },
 });

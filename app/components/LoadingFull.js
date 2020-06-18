@@ -8,18 +8,17 @@ import Colors from "../../constants/Colors";
 const { height, width } = Dimensions.get("window");
 
 export default (props) => {
-  const { isVisible, text } = props;
+  const { w, color, isVisible, text } = props;
   return (
-    <View isVisible={isVisible} style={{...styles.view}}>
-        <ActivityIndicator size={70} color={Colors.activeTabColor} />
-        {text && <Text style={styles.text}>{text}</Text>}
+    <View isVisible={isVisible} style={{...styles.view, width: w?width-w:width}}>
+        <ActivityIndicator size={70} color={color? color : Colors.activeTabColor} />
+        {text && <Text style={{...styles.text, color: color?color:Colors.primaryColor}}>{text}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   view: {
-    width: width,
     height: height,
     flex: 1,
     alignItems: "center",
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   text: {
-    color: Colors.primaryColor,
     textTransform: "uppercase",
     marginTop: 10,
   },
