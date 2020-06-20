@@ -26,12 +26,11 @@ const Login = (props) => {
   const { navigation } = props;
   const [ready, setReady] = useState(false);
 
-  
-
   if (!ready) {
     return (
       <>
       <AppLoading
+        color={color}
         startAsync={async () => {
           const imageAssets = cacheImages([
             require("../../../assets/logo.png"),
@@ -63,5 +62,4 @@ const Login = (props) => {
     </View>
   );
 };
-
 export default withNavigation(Login);

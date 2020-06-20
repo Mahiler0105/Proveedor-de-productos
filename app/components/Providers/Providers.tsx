@@ -27,7 +27,7 @@ export default function Providers(props) {
   const { navigation } = props;
   const [ready, setReady] = useState(false);  
   const isMountedRef = useIsMountedRef();
-
+  
   useEffect(() => {
     let cont = 0;
     let cant = 0;
@@ -48,15 +48,14 @@ export default function Providers(props) {
                     cover: doc.data().cover,
                   };
                   suppliers.all.push(temp);
-                });
+                });                
                 
-                console.log(suppliers);
                 let all = suppliers.all;
                 for(let a=0;a<all.length;a++){
                   firebase.storage().ref(all[a].logo).getDownloadURL().then(function (result) {             
                     cont++      
                     all[a].logo = result;   
-                    console.log(cont)    
+                      
                     if (cont == cant) {
                       setReady(true)
                     }         

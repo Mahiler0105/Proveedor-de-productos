@@ -14,8 +14,7 @@ interface AlbumProps {
 const { Value } = Animated;
 
 export default ({ album }: AlbumProps) => {
-  const [visible, setVisible] = useState(false);
-  const [renderItem, setRenderItem] = useState(null);
+  const [visible, setVisible] = useState(false);  
   let a = setVisible;
     
   const y = new Value(0);

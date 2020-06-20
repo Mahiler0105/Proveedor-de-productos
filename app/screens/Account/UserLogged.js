@@ -149,8 +149,7 @@ const HeaderUp = (props) => {
 
 const Options = (props) => {
   const { navigation, vendedor } = props;
-  console.log(vendedor);
-
+  
   return (
     <View>
       {list.map((item, i) => (

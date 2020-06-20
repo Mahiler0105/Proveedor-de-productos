@@ -4,16 +4,16 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 
 const Back = (props) =>{
-    const {navigation} = props
+    const {navigation, color} = props
     return(
         <TouchableOpacity
-          style={styles.back}
+          style={{...styles.back, backgroundColor: color}}
           onPress={() => navigation.goBack()}
         >
           <Ionicons
             name="ios-arrow-round-back"
             size={32}
-            color="#190976"
+            color="#fff"
           ></Ionicons>
         </TouchableOpacity>
     );
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
       width: 32,
       height: 32,
       borderRadius: 16,
-      backgroundColor: Colors.primaryColor,
       alignItems: "center",
       justifyContent: "center",
       zIndex: 10000000

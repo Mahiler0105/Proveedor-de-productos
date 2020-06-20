@@ -21,9 +21,7 @@ function infiniteScroll(dataList){
             scrolled = 0
         }   
 
-        if (flatList==null){
-            console.log('Cargando flat...')
-            console.log(flatList)
+        if (flatList==null){            
             scrollValue = 0
             scrolled = 0
         } else {

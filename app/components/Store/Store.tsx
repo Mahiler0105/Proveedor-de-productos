@@ -7,7 +7,14 @@ export interface Ini {
 export interface Store {
     id: any,
     icon: string,
-    type: string,
+    name: string,
+    cont: string,
+    desc: string,
+    cell: string,
+    dire: LatLng
+  }
+  export interface ProvLoc {
+    id: any,    
     name: string,
     cont: string,
     cell: string,
@@ -16,5 +23,8 @@ export interface Store {
 export interface Locals {
     ini: Ini[],
     all: Store[];
+  }
+  export interface Info {
+    all: ProvLoc[];
   }
   

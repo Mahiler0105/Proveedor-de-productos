@@ -5,21 +5,17 @@ import Colors from "../../constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default (props)=>{
-    const {navigation} = props
+    const {color, modal} = props
 return(
           
     <TouchableOpacity
-        style={styles.info}
-        onPress={() => {
-            props.navigation.navigate("InfoProviders", {
-                proveedor: navigation.state.params.proveedor,
-            });
-        }}
+        style={{...styles.info, backgroundColor: color}}
+        onPress={() => {modal(true)}}
     >
         <MaterialCommunityIcons
             name="dots-vertical"
             size={25}
-            color="#190976"
+            color="#fff"
         />
     </TouchableOpacity>    
 )
@@ -31,8 +27,7 @@ const styles = StyleSheet.create({
       right: 20,
       width: 32,
       height: 32,
-      borderRadius: 16,
-      backgroundColor: Colors.primaryColor,
+      borderRadius: 16,      
       alignItems: "center",
       justifyContent: "center",
       zIndex: 10000000

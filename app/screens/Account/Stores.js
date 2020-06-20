@@ -1,15 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Back from "../../components/Back";
-import Main from "../../components/Store/Main"
+import Main from "../../components/Store/Main";
+
+const color = 'rgb(78,32,29)'
 
 const Stores = (props) =>{
-  const {navigation} = props
-  console.log(props)
+  const {navigation} = props 
+
   return (
     <View style={styles.container}>      
       <View>
-        <Back navigation={navigation}></Back>
+        <Back navigation={navigation} color={color}></Back>
         <Main />        
       </View>
     </View>   
