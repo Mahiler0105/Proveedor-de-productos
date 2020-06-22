@@ -108,8 +108,7 @@ class Log extends Component {
       extrapolate: Extrapolate.CLAMP,
     });
   }
-  render() {
-    console.log(this.navigation);
+  render() {    
     return (
       <View
         style={{
@@ -128,11 +127,10 @@ class Log extends Component {
               transform: [{ translateY: this.buttonY }],
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              Iniciar Sesión
-            </Text>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Iniciar Sesión</Text>
           </Animated.View>
         </TapGestureHandler>
+
         <View style={{ flexDirection: "row", marginHorizontal: 15 }}>
           <Animated.View
             style={{

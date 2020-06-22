@@ -1,8 +1,12 @@
 {
   "expo": {
     "name": "Lerietbool: Proveedor de productos",
-    "slug": "Lerietbool_proveedor_productos",
-    "platforms": ["ios", "android", "web"],
+    "slug": "lrbtl_proveedor",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "androidStatusBar": {
       "hidden": true
     },
@@ -10,19 +14,25 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/bg.png" 
+      "image": "./assets/bg.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "googleServicesFile": "google-services.json",
       "package": "com.lrtbl.lerietbool",
-      "permissions": ["CAMERA_ROLL"]
-    }
+      "permissions": [
+        "CAMERA_ROLL"
+      ],
+      "versionCode": 1
+    },
+    "description": ""
   }
 }

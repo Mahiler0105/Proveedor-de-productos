@@ -18,8 +18,7 @@ export default MyAccount = (props) => {
   }, []);
 
   if (login === null) {
-    //return <LoadingFull isVisible={true} text="Cargando" color={color}/>;
+    return <LoadingFull isVisible={true} text={"Cargando"} color={'green'}/>;
   }
-
   return login ? <UserLogged /> : <Login />;
 };

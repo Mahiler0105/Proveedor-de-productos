@@ -15,7 +15,7 @@ export default function Register(props) {
 
   return (
     <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
-      <KeyboardAwareScrollView enableOnAndroid={true}>
+      <KeyboardAwareScrollView enableOnAndroid={true} >
         <View style={{height: height - 15}}>
           <Image source={require('../../../assets/logo.png')}
             style={{ flex: 1, width: null, height: height }}/>

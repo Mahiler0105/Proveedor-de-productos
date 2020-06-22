@@ -110,7 +110,7 @@ const HeaderUp = (props) => {
   });
 
   if (!ready) {
-    //return <LoadingFull isVisible={true} color={color} text={'cargandooooooo'}/>;
+    return <LoadingFull isVisible={true} color={color} text={'cargandooooooo'}/>;
   }
 
   return (

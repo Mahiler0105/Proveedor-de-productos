@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, FlatList, RefreshControl} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, FlatList, RefreshControl, StatusBar} from "react-native";
 import {Icon, Input, Button} from 'react-native-elements'
 import Layout from "../../../constants/Layout"
 import {Locals, Store} from './Store'
@@ -7,6 +7,9 @@ import Modal from '../Modal'
 import Mapview from './Mapview'
 import {LatLng} from 'react-native-maps'
 import LoadingFull from '../../components/LoadingFull'
+
+import Constants from "expo-constants";
+const status = Constants.statusBarHeight;
 
 import { firebaseApp } from "../../utils/Firebase";
 import firebase from "firebase/app";
@@ -24,8 +27,13 @@ const iconsavailable =[{icon: "home"},{icon: "drive-eta"},{icon: "headset"},{ico
 
 const Del = (props)=>{
     const {ind, e, d, reload} = props
+    const [disabled, setDisabled] = useState(false)
+
+    const [value, setValue, setReady] = reload 
+
     const user = db.collection('Vendedor').doc(firebase.auth().currentUser.uid).get();
     const deleteStore = async () => {
+        e(false); d(false);setReady(false);
         await db.collection("Vendedor").doc(firebase.auth().currentUser.uid).update({ 
             tiendas: (await user).data().tiendas-1,       
         })
@@ -34,8 +42,8 @@ const Del = (props)=>{
 
         await db.collection("Tienda").doc(locals.all[ind].id).delete()
         .then(()=> console.log("Eliminado"))            
-        .catch(() => console.log("Error al eliminar Tienda..."));
-        reload(false)
+        .catch(() => console.log("Error al eliminar Tienda..."));        
+        setValue(!value);
     }        
     return(
         <>
@@ -43,9 +51,9 @@ const Del = (props)=>{
                 <Text style={{ fontSize: 24 }}>¿Desea eliminar esta tienda?</Text>
             </View>
             <View style={{height: 52, width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection:'row' }}>
-                <Button buttonStyle={{paddingLeft: 50, paddingRight: 50}} title="Si" type="clear"
-                    onPress={()=>{e(false); d(false);deleteStore();}}  />
-                <Button onPress={()=>{d(false)}} buttonStyle={{paddingLeft: 50, paddingRight: 50}} title="No" type="clear" />
+                <Button disabled={disabled} buttonStyle={{paddingLeft: 50, paddingRight: 50}} title="Si" type="clear"
+                    onPress={()=>{setDisabled(true);deleteStore();}}  />
+                <Button disabled={disabled} onPress={()=>{d(false)}} buttonStyle={{paddingLeft: 50, paddingRight: 50}} title="No" type="clear" />
             </View> 
         </>
     )
@@ -68,11 +76,15 @@ const Children = (props)=>{
     const {ind, data, edit, e, m, viewall, coor, reload} = props
     const [num, setNum] = useState(0)    
     const [del, setDel] = useState(false)
+    const [disabled, setDisabled] = useState(false)
+
+    const [value, setValue, setReady] = reload
     
     const [nombreLocal, setNombreLocal] = useState("")      
     const [personaContacto, setPersonaContacto] = useState("")
     const [celular, setCelular] = useState("")
-    const [direccion, setDireccion] = useState("")      
+    const [direccion, setDireccion] = useState("") 
+    
 
     const newStore:Store={
         id: firebase.auth().currentUser.uid,               
@@ -85,6 +97,7 @@ const Children = (props)=>{
     }
     const user = db.collection('Vendedor').doc(firebase.auth().currentUser.uid).get();
     const addStore = async () => {
+        e(false);setReady(false);
         await db.collection("Vendedor").doc(firebase.auth().currentUser.uid).update({ 
             tiendas: (await user).data().tiendas+1,       
         })
@@ -103,10 +116,11 @@ const Children = (props)=>{
             crat: new Date(),                
         })
         .then(()=> console.log("Agregado"))            
-        .catch(() => console.log("Error al añadir Tienda..."));
-        reload(false)
+        .catch(() => console.log("Error al añadir Tienda..."));        
+        setValue(!value)                     
     }  
     const editStore = async () => {
+        e(false);setReady(false);
         await db.collection("Tienda").doc(locals.all[ind].id).update({                           
             name: newStore.name,
             cont: newStore.cont,
@@ -117,7 +131,8 @@ const Children = (props)=>{
             long: newStore.dire.longitude,                         
         })
         .then(()=> console.log("Actualizado"))            
-        .catch(() => console.log("Error al añadir Tienda..."));
+        .catch(() => console.log("Error al añadir Tienda..."));        
+        setValue(!value)        
     }
     
     return(
@@ -156,15 +171,14 @@ const Children = (props)=>{
                 <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Icono para su tienda</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <FlatList data={iconsavailable}
-                 
+                <FlatList data={iconsavailable}                 
                 horizontal             
                 keyExtractor={(item, index) => 'key' + index}                
                 renderItem={({ item, index })=> <Seticons ind={index} name={item.icon} num={num} setnum={setNum} ></Seticons>}
                 windowSize={10}/>
             </View>
-            <Button onPress={()=>{edit?editStore():addStore();e(false);}} title="Guardar" type="clear" 
-                disabled={nombreLocal && personaContacto && celular && direccion && coor.latitude!=0 ? false : true}/>
+            <Button onPress={()=>{setDisabled(true);edit?editStore():addStore();}} title="Guardar" type="clear" 
+                disabled={ (nombreLocal && personaContacto && celular && direccion && coor.latitude!=0) || disabled ? false : true}/>
             
             <Modal isVisible={del} setIsVisible={setDel} children={<Del ind={ind} e={e} d={setDel} reload={reload}/>} back={'#fff'}></Modal>
         </>
@@ -181,21 +195,23 @@ const Storefill = (props) => {
         </TouchableOpacity>
     )
 }
-
 const MainStore = (props) =>{  
     let cuser = firebase.auth().currentUser.uid
     let nroTiendas = 0
-    const [ready, setReady] = useState(false)    
+    const [ready, setReady] = useState(false)
+    const [reload, setReload] = useState(false)    
+
     useEffect(()=>{
         const load = async () => {
             await db.collection("Vendedor").doc(cuser).get().then((doc) => {            
-                nroTiendas = doc.data().tiendas                
+                nroTiendas = doc.data().tiendas   
+                console.log(nroTiendas)             
             }).catch(()=> console.log("Error"));
-            if(nroTiendas==0){
-                console.log("No hay tiendas en este usuario")
-                setReady(true)
-            } else {
+            if(nroTiendas>0){                
                 loadStores()
+            } else {
+                locals.all=[]
+                setReady(true)
             }
         }
         load()      
@@ -218,7 +234,7 @@ const MainStore = (props) =>{
             }).catch(()=> console.log("Error"))        
             setReady(true)
         }
-    },[ready])
+    },[reload])
 
     const [visible, setVisible] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -227,11 +243,12 @@ const MainStore = (props) =>{
     const [ind, setInd] = useState(0); 
     const empty : LatLng = {latitude: 0, longitude: 0}
     const [coordinates, setCoordinates] = useState(empty)
-    const[direction, setDire] = useState("")  
-
+    const[direction, setDire] = useState("")
+    
     if(!ready){return(<View style={{width:width, height:height}}><LoadingFull isVisible={true} color={color} /></View>)} else {
+    
     return (  
-        <SafeAreaView><ScrollView>        
+        <SafeAreaView><StatusBar barStyle={'light-content'} />        
         <View style={styles.super}>
             <View style={styles.container}>
             
@@ -241,7 +258,7 @@ const MainStore = (props) =>{
 
             <TouchableOpacity 
                 style={{position: "absolute", top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: "center", justifyContent: "center"}} 
-                onPress={()=>{setReady(false)}}>
+                onPress={()=>{setReload(!reload);setReady(false)}}>
                     <Icon color={color} size={20} name={'reload1'} type={'antdesign'}></Icon>       
             </TouchableOpacity>
 
@@ -256,7 +273,7 @@ const MainStore = (props) =>{
             ))}             
             </View>
             {locals.all.length>1?(
-            <View style={{width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop:10, marginBottom:10 }}>
+            <View style={{width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop:10, /*marginBottom:10*/ }}>
                 <TouchableOpacity onPress={()=>{setMap(true);setView(true)}}>
                     <Icon name='location' type='entypo' size={24} color={color} />
                     <Text style={{color: '#245c9c'}}>Ver mapa de mis tiendas</Text>
@@ -265,12 +282,12 @@ const MainStore = (props) =>{
             ):(<></>)}           
 
             <Modal isVisible={visible} setIsVisible={setVisible} back={'#fff'} 
-                    children={<Children ind={ind} data={locals.all} edit={edit} e={setVisible} m={setMap} viewall={setView} coor={coordinates} reload={setReady}/>} ></Modal>
+                    children={<Children ind={ind} data={locals.all} edit={edit} e={setVisible} m={setMap} viewall={setView} coor={coordinates} reload={[reload, setReload, setReady]}/>} ></Modal>
             <Modal isVisible={map} setIsVisible={setMap} back={'#fff'}
                 children={<Mapview all={view} color={color} places={locals.all} index={ind} title={'Ubicacion de mis tiendas'} hide={setMap} address={setDire} save={setCoordinates}/>} ></Modal>
            
         </View>
-        </ScrollView></SafeAreaView> 
+        </SafeAreaView>
     )}
 }
 export default MainStore
@@ -278,7 +295,7 @@ export default MainStore
 
 const styles = StyleSheet.create({
     super: {
-        alignItems: "center", justifyContent: "center", width: width, height: height, padding: 10
+        alignItems: "center", justifyContent: "center", flex:1, padding: 10
     },
     container: {        
         marginLeft: 15, marginRight: 15, width: "100%", flex: 1, flexDirection: "row", flexWrap: "wrap", alignItems: "flex-start" },

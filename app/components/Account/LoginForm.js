@@ -76,6 +76,7 @@ export default function LoginForm(props) {
         leftIconContainerStyle={styles.leftIconContainer}
         errorMessage={errorEmail}
         errorStyle={styles.error}
+        autoCapitalize={'none'}
         leftIcon={
           <Icon
             type="material-community"
