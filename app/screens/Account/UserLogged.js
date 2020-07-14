@@ -21,7 +21,7 @@ const UserLogged = (props) => {
   const [userInfo, setUserInfo] = useState({});
   const [vendedor, setVendedor] = useState({});
   const [reloadData, setReloadData] = useState(false);
-
+  const [modal, setModal] = useState(false);
   useEffect(() => {
     (async () => {
       const user = firebase.auth().currentUser;
@@ -51,13 +51,18 @@ const UserLogged = (props) => {
         setReloadData={setReloadData}
         vendedor={vendedor}
       ></HeaderUp>
-      <Options navigation={navigation} vendedor={vendedor}></Options>
+      <Options
+        navigation={navigation}
+        vendedor={vendedor}
+        modal={modal}
+        setModal={setModal}
+      ></Options>
     </View>
   );
 };
 export default withNavigation(UserLogged);
 
-const color = 'rgb(78,32,29)'
+const color = "rgb(78,32,29)";
 
 const HeaderUp = (props) => {
   const [ready, setReady] = useState(false);
@@ -110,7 +115,9 @@ const HeaderUp = (props) => {
   });
 
   if (!ready) {
-    return <LoadingFull isVisible={true} color={color} text={'cargandooooooo'}/>;
+    return (
+      <LoadingFull isVisible={true} color={color} text={"cargandooooooo"} />
+    );
   }
 
   return (
@@ -138,9 +145,21 @@ const HeaderUp = (props) => {
           {firebase.auth().currentUser.email}
         </Text>
       </View>
-      <View style={{width: '100%', justifyContent: 'center',marginTop:15, alignItems: 'center'}}>
-        <TouchableOpacity style={styles.sigo} onPress={() => {firebase.auth().signOut();}}>
-          <Text style={styles.sigt}>Cerrar Sesión</Text>        
+      <View
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          marginTop: 15,
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity
+          style={styles.sigo}
+          onPress={() => {
+            firebase.auth().signOut();
+          }}
+        >
+          <Text style={styles.sigt}>Cerrar Sesión</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -148,13 +167,14 @@ const HeaderUp = (props) => {
 };
 
 const Options = (props) => {
-  const { navigation, vendedor } = props;
-  
+  const { navigation, vendedor, modal, setModal } = props;
+
   return (
     <View>
       {list.map((item, i) => (
         <TouchableOpacity
-          key={i.toString()} onPress={() => navigation.navigate(item.navigate, { vendedor })}
+          key={i.toString()}
+          onPress={() => navigation.navigate(item.navigate, { vendedor })}
         >
           <ListItem
             key={i.toString()}
@@ -165,6 +185,14 @@ const Options = (props) => {
           />
         </TouchableOpacity>
       ))}
+      <Button
+        title="Mirar Tutorial"
+        containerStyle={styles.btnContainerLogin}
+        buttonStyle={styles.btnLogin}
+        onPress={() => {
+          setModal(true);
+        }}
+      />
     </View>
   );
 };
@@ -209,19 +237,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 180,
   },
-  sigo:{
-    width: '100%',
+  sigo: {
+    width: "100%",
     height: 30,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: color,
   },
-  sigt:{
+  sigt: {
     fontSize: 17,
     textAlign: "center",
-    color: "#fff",    
-    width: '100%',
+    color: "#fff",
+    width: "100%",
     //height: 45,
     borderRadius: 10,
-  }
+  },
 });

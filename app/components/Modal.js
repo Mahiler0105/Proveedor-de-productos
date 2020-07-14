@@ -11,7 +11,7 @@ export default function Modal(props) {
       isVisible={isVisible}
       windowBackgroundColor="rgba(0,0,0,.7)"
       overlayBackgroundColor="transparent"
-      overlayStyle={{...styles.overlay, borderColor:back?back:'#000'}}
+      overlayStyle={{ ...styles.overlay, borderColor: back ? back : "#000" }}
       onBackdropPress={closeModal}
     >
       {children}
@@ -23,8 +23,9 @@ const styles = StyleSheet.create({
   overlay: {
     height: "auto",
     width: "90%",
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     // borderColor: Colors.primaryColor,
+    padding: 0,
     borderRadius: 20,
     borderWidth: 2,
   },
