@@ -185,14 +185,6 @@ const Options = (props) => {
           />
         </TouchableOpacity>
       ))}
-      <Button
-        title="Mirar Tutorial"
-        containerStyle={styles.btnContainerLogin}
-        buttonStyle={styles.btnLogin}
-        onPress={() => {
-          setModal(true);
-        }}
-      />
     </View>
   );
 };
