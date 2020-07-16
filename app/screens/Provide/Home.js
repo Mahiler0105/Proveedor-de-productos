@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
-
+import ActionButton from "react-native-action-button";
 import Home from "../../components/Providers/Home";
 import { LinearGradient } from "expo-linear-gradient";
 import { SearchBar } from "react-native-elements";
@@ -79,6 +79,15 @@ class App extends Component {
               </View>
             </View>
           </ScrollView>
+          <ActionButton
+            buttonColor="rgba(231,76,60,1)"
+            buttonText="🤖"
+            onPress={() => {
+              this.navigation.navigate("ChatBot");
+            }}
+          >
+            {" "}
+          </ActionButton>
         </SafeAreaView>
       </LinearGradient>
     );
