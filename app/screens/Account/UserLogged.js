@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
+import { TouchableOpacity, View, StyleSheet, Text, Image, NativeModules } from "react-native";
 import { Header, Avatar, Button } from "react-native-elements";
 import { ListItem } from "react-native-elements";
 import LoadingFull from "../../components/LoadingFull";
@@ -11,6 +11,11 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { withNavigation } from "react-navigation";
 import { Updates } from "expo";
+import Modal from "../../components/Modal";
+import { openApp } from "rn-openapp";
+
+const { Openapp } = NativeModules;
+
 
 const db = firebase.firestore(firebaseApp);
 
@@ -21,7 +26,7 @@ const UserLogged = (props) => {
   const [userInfo, setUserInfo] = useState({});
   const [vendedor, setVendedor] = useState({});
   const [reloadData, setReloadData] = useState(false);
-  const [modal, setModal] = useState(false);
+  
   useEffect(() => {
     (async () => {
       const user = firebase.auth().currentUser;
@@ -54,8 +59,6 @@ const UserLogged = (props) => {
       <Options
         navigation={navigation}
         vendedor={vendedor}
-        modal={modal}
-        setModal={setModal}
       ></Options>
     </View>
   );
@@ -167,25 +170,58 @@ const HeaderUp = (props) => {
 };
 
 const Options = (props) => {
-  const { navigation, vendedor, modal, setModal } = props;
+  const { navigation, vendedor} = props;
 
+  const [modal, setModal] = useState(false);
+
+  const url = "whatsapp://app";
+
+  const config = {
+    appName: 'Paiton',
+    appStoreId: 'id00112233',
+    playStoreId: '',
+    appStoreLocale: 'br',
+  };
+  
+  const examplePackageId = "io.lrtbl.paiton.game";
+ 
   return (
-    <View>
-      {list.map((item, i) => (
-        <TouchableOpacity
-          key={i.toString()}
-          onPress={() => navigation.navigate(item.navigate, { vendedor })}
-        >
-          <ListItem
-            key={i.toString()}
-            title={item.title}
-            leftIcon={{ name: item.icon, type: item.type }}
-            bottomDivider
-            chevron
+      <View>
+          {list.map((item, i) => (
+              <TouchableOpacity
+                  key={i.toString()}
+                  onPress={() =>
+                    item.navigate==""? setModal(true) : navigation.navigate(item.navigate, { vendedor })
+                  }
+              >
+                  <ListItem
+                      key={i.toString()}
+                      title={item.title}
+                      leftIcon={{ name: item.icon, type: item.type }}
+                      bottomDivider
+                      chevron
+                  />
+              </TouchableOpacity>
+          ))}
+
+          <Modal
+              isVisible={modal}
+              setIsVisible={setModal}
+              children={
+                <TouchableOpacity 
+                  style={{justifyContent: 'center', overflow: 'hidden'}} 
+                  onPress={()=>{
+                    console.log(Openapp);
+                      // openApp(examplePackageId)
+                      // .then(result => cosnole.log(result))
+                      // .catch(e => console.warn(e));
+                    console.log("Entrando a juego");}}>
+                  <Image style={{borderRadius: 18, width: '100%'}} source={require("../../../assets/banner-ad.png")} />
+                </TouchableOpacity>                
+              }
+              back={"rgb(78,32,29)"}
           />
-        </TouchableOpacity>
-      ))}
-    </View>
+      </View>
   );
 };
 
@@ -213,6 +249,12 @@ const list = [
     icon: "information",
     type: "material-community",
     navigate: "About",
+  },
+  {
+    title: "Descuentos",
+    icon: "cash-usd",
+    type: "material-community",
+    navigate: "",
   },
 ];
 
