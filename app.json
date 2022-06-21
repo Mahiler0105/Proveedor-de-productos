@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Lerietbool: Proveedor de productos",
-    "slug": "lrbtl_proveedor",
+    "name": "Proveedor de productos",
+    "slug": "proveedor",
     "platforms": [
       "ios",
       "android",
@@ -27,7 +27,7 @@
     },
     "android": {
       "googleServicesFile": "google-services.json",
-      "package": "com.lrtbl.lerietbool",
+      "package": "com.proveedor",
       "permissions": [
         "CAMERA_ROLL"
       ],
